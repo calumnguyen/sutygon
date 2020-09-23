@@ -6,6 +6,69 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+#positioningrow{
+ display: flex;
+ flex-direction: row-reverse;
+}
+@media screen and (max-width: 768px) {
+    #UpSize1{
+        margin-top: 50px;
+    }
+}
+#headingSize{
+  position: relative;
+  top: 20px;
+}
+#headingSize1{
+  position: relative;
+  top: 50px;
+}
+#rowSizingDown{
+ 
+  top: 70px;
+}
+#rowSizingDown1{
+  
+  top: 150px ;
+}
+@media screen and (max-width: 768px) {
+    #rowSizingDown{
+        top: 30px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #rowSizingDown1{
+        top: 40px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #headingSize{
+        position: relative;
+        top: 20px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #headingSize1{
+        position: relative;
+        top: 50px;
+    }
+}
+#rght{
+  float: right;
+  text-align: right;
+}
+#ceoSize{
+  top: -35px;
+}
+#UpSize{
+  top: -60px;
+}
+#UpSize1{
+  top: -60px;
+}
+#UpSizeImg{
+  top: -20px;
+}
 #whiteclrDot{
   height: 13px;
   width: 13px;
@@ -111,7 +174,7 @@ input[type=number] {
 }
 #vlCustm{
   border-left: 2px solid cornsilk;
-  height: 100px;
+  height: 150px;
   position: absolute;
   left: 50%; 
   margin-left: -3px;
