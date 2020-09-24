@@ -292,7 +292,7 @@ $(document).on('ready', function () {
 	// check if walkthrough is completed
 	if(getCookie('walkthrough')) {
 		// uncomment below to delete walkthrough cookie to show walkthrough div
-		// document.cookie = "walkthrough=;"
+		document.cookie = "walkthrough=;"
 
 		// hide waklthrough box
 		$('.walkthrough-overlay-container').hide();

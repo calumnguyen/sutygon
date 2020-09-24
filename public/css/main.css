@@ -41,6 +41,19 @@ input[type=number] {
     .section-description {
       padding-top: 100px !important;
     }
+    .arrow-img {
+      right: 5px !important;
+    }
+    .walkthrough-overlay-container .menu-cont {
+      animation: none !important;
+    }
+    .walkthrough-verlay-1 {
+      margin-top: 50%;
+      text-align: center;
+    }
+    .walkthrough-verlay-1 h1 {
+      font-size: 20px;
+    }
 }
 #headingSize{
   position: relative;
