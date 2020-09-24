@@ -280,9 +280,12 @@ $(document).on('ready', function () {
 
 	// 9. Page Loader : hide loader when all are loaded
 	contextWindow.on('load', function () {
-		$('#page-loader').addClass('p-hidden');
+
 		$('.section').addClass('anim');
 	});
+	setTimeout(function(){
+		$('#page-loader').addClass('p-hidden');
+	 }, 10200);
 
 	// 10. Autoupdate year
 	var day = new Date();
@@ -292,7 +295,7 @@ $(document).on('ready', function () {
 	// check if walkthrough is completed
 	if(getCookie('walkthrough')) {
 		// uncomment below to delete walkthrough cookie to show walkthrough div
-		document.cookie = "walkthrough=;"
+		// document.cookie = "walkthrough=;"
 
 		// hide waklthrough box
 		$('.walkthrough-overlay-container').hide();
