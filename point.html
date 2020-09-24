@@ -4,6 +4,7 @@
 
 <head>
    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
+
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -109,30 +110,6 @@
         <!-- End of CTA & Icons menu -->
       </nav>
       <!-- End of top menu -->
-      <!-- Begin of sidebar nav menu params class: text-only / icon-only-->
-      <nav class="navbar-sidebar ">
-        <ul class="navbar-nav" id="qmenu">
-          <li class="nav-item" data-menuanchor="home">
-            <a href="/">
-              <i class="icon ion-ios-home-outline"></i>
-              <span class="txt">Trang chủ</span>
-            </a>
-          </li>
-          <li class="nav-item" data-menuanchor="register">
-            <a href="register">
-              <i class="icon ion-ios-compose-outline"></i>
-              <span class="txt">Đăng ký</span>
-            </a>
-          </li>
-          <li class="nav-item" data-menuanchor="contact">
-            <a href="contact">
-              <i class="icon ion-ios-telephone-outline"></i>
-              <span class="txt">Liên hệ</span>
-            </a>
-          </li>
-        </ul>
-      </nav>
-      <!-- End of sidebar nav menu -->
       <!-- Begin of hamburger mainmenu menu -->
      <nav class="navbar-mainmenu">
         <ul class="navbar-nav mr-auto">
@@ -152,6 +129,12 @@
             <a class="nav-link" href="store">
               <i class="las la-building" id="hideIcon"></i>
               <span class="txt">Cửa hàng</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="team">
+              <i class="las la-user-friends" id="hideIcon"></i>
+              <span class="txt">Team</span>
             </a>
           </li>
         </ul>
@@ -197,23 +180,23 @@
                   	<div class="row">
                   		<div class="col-12 col-md-12">
 	                    <h2 class="text-center" class="display-4 display-title anim-2">Nguyễn Văn A</h2>
-                      <img src="img/diamond.gif" width="150px"/>
+                      <!-- <img src="img/diamond.gif" width="150px"/> -->
 	                    <h2 class="text-center"><span class="badge badge-pill badge-danger">Thành Viên Kim Cương</span></h2>
                     </div>
                 </div>
-                    <div class="row">
-                      <div class="col-5 col-md-5">
+                    <div class="row" >
+                      <div class="col-5 col-md-5" id="rowSizingDown">
                         <div>
                          <h6 class="text-only"><span class="dot" id="dclr"></span> Không cọc giấy CMND</h6>
-                         <h6 class="text-only"><span class="dot" id="dclr"></span> Không cọc tiền thuê đồ</h6>
-                         <h6 class="text-only"><span class="dot" id="dclr"></span> <span class="fa fa-dollar"></span>30 voucher cho mỗi <span class="fa fa-dollar"></span>200</h6>
+                         <h6 class="text-only" id="headingSize"><span class="dot" id="dclr"></span> Không cọc tiền thuê đồ</h6>
+                         <h6 class="text-only" id="headingSize1"><span class="dot" id="dclr"></span> <span class="fa fa-dollar"></span>30 voucher cho mỗi <span class="fa fa-dollar"></span>200</h6>
                         </div>
                       </div>
-                      <div class="col-2 col-md-2">
+                      <div class="col-2 col-md-2" id="rowSizingDown">
                           <div class="vl" id="vlCustm"></div>
                       </div>
 
-                      <div class="col-5 col-md-5">
+                      <div class="col-5 col-md-5" id="rowSizingDown">
                         <div>
                           <h5 class="text-only"><span class="fa fa-dollar"></span>155/ <span class="fa fa-dollar"></span>200 To Next</h5>
                           <h5 class="text-danger"><span class="fa fa-dollar"></span>30 Off</h5>
@@ -224,7 +207,7 @@
                     </div>
                     <br> <br>
                     <div class="row">
-                      <div class="col-12 col-md-12">
+                      <div class="col-12 col-md-12" id="rowSizingDown1">
                        <h1 class="text-only"><span class="badge badge-pill badge-danger">Bạn đang ở bậc thành viên cao nhất!</span></h1>
                       </div>
                     </div>

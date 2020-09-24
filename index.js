@@ -41,6 +41,10 @@ app.get('/contact', function(req, res) {
   res.sendFile(__dirname + '/contact.html');
 })
 
+app.get('/team', function(req, res) {
+  res.sendFile(__dirname + '/team.html');
+})
+
 //Confirmation for 'node index.js' or 'nodemon'
 app.listen(process.env.PORT || 3000, function(){
 console.log('Port is running...');
