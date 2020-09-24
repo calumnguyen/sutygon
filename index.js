@@ -29,6 +29,10 @@ app.get('/myorder', function(req, res) {
   res.sendFile(__dirname + '/myorder.html');
 })
 
+app.get('/silverpoint', function(req, res) {
+  res.sendFile(__dirname + '/silverpoint.html');
+})
+
 app.get('/about', function(req, res) {
   res.sendFile(__dirname + '/about.html');
 })

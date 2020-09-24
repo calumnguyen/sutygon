@@ -3107,8 +3107,9 @@ textarea {
   min-height: 100%; }
 
 .body-page {
-  background-color: #1d1d1d;
-  color: #ffffff; }
+  background-color: #111111;
+  color: #ffffff;
+}
 
 .body-item {
   background-color: #1d1d1d;
@@ -3413,10 +3414,12 @@ textarea {
           max-width: none; } }
 
 .section-item {
-  background: #1d1d1d; }
+  background: #111111;
+}
 
 .section-gallery {
-  background: #1d1d1d; }
+  background: #111111;
+}
 
 .fp-scroller {
   display: flex;
@@ -4726,4 +4729,9 @@ h1, h2, h3, h4 {
   position: absolute;
   right: 80px;
   top: 5px;
+}
+.centered-gif {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 40px;
 }
