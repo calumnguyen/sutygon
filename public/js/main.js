@@ -289,4 +289,32 @@ $(document).on('ready', function () {
 	var thisYear = day.getFullYear();
 	$('#copyrightyear').text(thisYear);
 
+	// check if walkthrough is completed
+	if(getCookie('walkthrough')) {
+		// uncomment below to delete walkthrough cookie to show walkthrough div
+		// document.cookie = "walkthrough=;"
+
+		// hide waklthrough box
+		$('.walkthrough-overlay-container').hide();
+	}
 });
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+function setWalkthroughCompleted() {
+	document.cookie = "walkthrough=completed";
+	$('.walkthrough-overlay-container').hide();
+}
