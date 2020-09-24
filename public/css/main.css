@@ -1,4 +1,4 @@
-input::-webkit-outer-spin-button,
+::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -41,6 +41,19 @@ input[type=number] {
     .section-description {
       padding-top: 100px !important;
     }
+    .arrow-img {
+      right: 5px !important;
+    }
+    .walkthrough-overlay-container .menu-cont {
+      animation: none !important;
+    }
+    .walkthrough-verlay-1 {
+      margin-top: 50%;
+      text-align: center;
+    }
+    .walkthrough-verlay-1 h1 {
+      font-size: 20px;
+    }
 }
 #headingSize{
   position: relative;
@@ -53,7 +66,7 @@ input[type=number] {
 #rowSizingDown{
   top: 70px;
 }
-#rowSizingDown1{  
+#rowSizingDown1{
   top: 150px ;
 }
 @media screen and (max-width: 768px) {
@@ -3094,8 +3107,9 @@ textarea {
   min-height: 100%; }
 
 .body-page {
-  background-color: #1d1d1d;
-  color: #ffffff; }
+  background-color: #111111;
+  color: #ffffff;
+}
 
 .body-item {
   background-color: #1d1d1d;
@@ -3400,10 +3414,12 @@ textarea {
           max-width: none; } }
 
 .section-item {
-  background: #1d1d1d; }
+  background: #111111;
+}
 
 .section-gallery {
-  background: #1d1d1d; }
+  background: #111111;
+}
 
 .fp-scroller {
   display: flex;
@@ -4678,4 +4694,44 @@ h1, h2, h3, h4 {
 .pos-abs {
   padding-top: 80px;
   padding-left: 0px;
+}
+
+@keyframes pop {
+  0% {  transform: scale(1, 1);}
+  10% {  transform: scale(3, 3);}
+  30% {  transform: scale(2, 2);}
+  50% {  transform: scale(3, 3);}
+  70% {  transform: scale(2, 2);}
+  90% {  transform: scale(3, 3);}
+  100% {  transform: scale(1, 1);}
+}
+.walkthrough-overlay-container {
+  position: absolute;
+  top: 0; left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.97);
+  z-index: 999;
+}
+.walkthrough-overlay-container .menu-cont {
+  float: right;
+  margin-right: 3%;
+  margin-top: 2%;
+  animation-name: pop;
+  animation-duration: 4s;
+}
+.walkthrough-verlay-1 {
+  vertical-align: middle;
+  padding-top: 20%;
+}
+.arrow-img {
+  position: absolute;
+  right: 80px;
+  top: 5px;
+}
+.centered-gif {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 40px;
 }

@@ -60,15 +60,13 @@
   <link rel="stylesheet" href="css/style-default.css">
 
   <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body id="menu" class="body-page">
 
   <div class="page-loader" id="page-loader">
-    <div>
-      <div class="icon ion-spin"></div>
-      <p>sutygon-bot loading...</p>
-    </div>
+    <img src="img/loader.gif" width="30%">
   </div>
 
   <!-- BEGIN OF site header Menu -->
@@ -225,9 +223,9 @@
             </div>
             <div class="col-6 col-sm-6 col-md-6 center-vh" id="UpSize1">
               <div class="legend text-left pos-abs">
-                <h1 class="strong">Mary lou</h1>
+                <h1 class="strong animate__animated animate__fadeInDown">Mary lou</h1>
                 <br>
-                  <p class="txt-para">This is comment made by mary lou the CEO</p>
+                  <p class="txt-para animate__animated animate__fadeInDown">This is comment made by mary lou the CEO</p>
               </div>
             </div>
           </div>
@@ -272,8 +270,8 @@
             </div>
             <div class="col-6 col-sm-6 col-md-6 center-vh" id="UpSize1">
               <div class="legend text-left pos-abs">
-                <h1 class="strong" id="rght">Rick Roll</h1>
-                  <p class="txt-para" id="rght">This is comment made by rick roll the SM1</p>
+                <h1 class="strong animate__animated animate__fadeInDown" id="rght">Rick Roll</h1>
+                  <p class="txt-para animate__animated animate__fadeInDown" id="rght">This is comment made by rick roll the SM1</p>
               </div>
             </div>
           </div>
@@ -373,7 +371,28 @@
 
   </footer>
   <!-- END OF site footer -->
-
+  <div class="walkthrough-overlay-container">
+    <div class="menu-cont">
+      <button class="navbar-toggler site-menu-icon" id="navMenuIcon">
+      <!-- Available class : menu-icon-dot / menu-icon-thick /menu-icon-random -->
+      <span class="menu-icon menu-icon-random">
+        <span class="bars">
+          <span class="bar1"></span>
+          <span class="bar2"></span>
+          <span class="bar3"></span>
+        </span>
+      </span>
+    </button>
+    </div>
+    <img src="img/whitearrow.png" class="arrow-img animate__animated animate__heartBeat">
+      <div class="walkthrough-verlay-1">
+        <h1 class="center-vh animate__animated animate__backInLeft">Use Sidebar icon to view Menu items</h1>
+        <p class="center-vh animate__animated animate__backInRight">click on the 3 bars to view the sidebar menu with more options</p>
+        <div class="center-vh">
+          <a href="#" onclick="setWalkthroughCompleted()" class="btn bttn-succes">Ok</a>
+        </div>
+      </div>
+  </div>
   <!-- scripts -->
   <!-- All Javascript plugins goes here -->
   <script src="js/vendor/jquery-1.12.4.min.js"></script>
