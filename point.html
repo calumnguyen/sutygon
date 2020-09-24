@@ -60,15 +60,21 @@
   <link rel="stylesheet" href="css/style-default.css">
 
   <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+  <style>
+  @media (min-width: 768px) {
+    .section .section-wrapper .scrollable {
+        padding-top: 0px !important;
+        padding-bottom: 0 !important;
+    }
+  }
+
+  </style>
 </head>
 
 <body id="menu" class="body-page">
 
   <div class="page-loader" id="page-loader">
-    <div>
-      <div class="icon ion-spin"></div>
-      <p>sutygon-bot loading...</p>
-    </div>
+    <img src="img/loader.gif" width="30%">
   </div>
 
   <!-- BEGIN OF site header Menu -->
@@ -179,8 +185,8 @@
                   <div class="wrapper">
                   	<div class="row">
                   		<div class="col-12 col-md-12">
+                        <img src="img/diamond.gif" class="centered-gif" width="120px" style="margin-bottom: 0px;">
 	                    <h2 class="text-center" class="display-4 display-title anim-2">Nguyễn Văn A</h2>
-                      <img src="img/diamond.gif" width="150px"/>
 	                    <h2 class="text-center"><span class="badge badge-pill badge-danger">Thành Viên Kim Cương</span></h2>
                     </div>
                 </div>
@@ -205,7 +211,6 @@
                       </div>
 
                     </div>
-                    <br> <br>
                     <div class="row">
                       <div class="col-12 col-md-12" id="rowSizingDown1">
                        <h1 class="text-only"><span class="badge badge-pill badge-danger">Bạn đang ở bậc thành viên cao nhất!</span></h1>
@@ -242,7 +247,28 @@
   </main>
   <!-- END OF page main content -->
 
-
+  <div class="walkthrough-overlay-container">
+    <div class="menu-cont">
+      <button class="navbar-toggler site-menu-icon" id="navMenuIcon">
+      <!-- Available class : menu-icon-dot / menu-icon-thick /menu-icon-random -->
+      <span class="menu-icon menu-icon-random">
+        <span class="bars">
+          <span class="bar1"></span>
+          <span class="bar2"></span>
+          <span class="bar3"></span>
+        </span>
+      </span>
+    </button>
+    </div>
+    <img src="img/whitearrow.png" class="arrow-img animate__animated animate__heartBeat">
+      <div class="walkthrough-verlay-1">
+        <h1 class="center-vh animate__animated animate__backInLeft">Use Sidebar icon to view Menu items</h1>
+        <p class="center-vh animate__animated animate__backInRight">click on the 3 bars to view the sidebar menu with more options</p>
+        <div class="center-vh">
+          <a href="#" onclick="setWalkthroughCompleted()" class="btn bttn-succes">Ok</a>
+        </div>
+      </div>
+  </div>
 
   <!-- scripts -->
   <!-- All Javascript plugins goes here -->

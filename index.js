@@ -29,6 +29,10 @@ app.get('/myorder', function(req, res) {
   res.sendFile(__dirname + '/myorder.html');
 })
 
+app.get('/silverpoint', function(req, res) {
+  res.sendFile(__dirname + '/silverpoint.html');
+})
+
 app.get('/about', function(req, res) {
   res.sendFile(__dirname + '/about.html');
 })
@@ -46,6 +50,6 @@ app.get('/team', function(req, res) {
 })
 
 //Confirmation for 'node index.js' or 'nodemon'
-app.listen(process.env.PORT || 5000, function(){
+app.listen(process.env.PORT || 3000, function(){
 console.log('Port is running...');
 })

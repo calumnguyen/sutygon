@@ -60,16 +60,15 @@
   <link rel="stylesheet" href="css/style-default.css">
 
   <script src="js/vendor/modernizr-2.7.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 </head>
 
 <body id="menu" class="body-page">
 
   <div class="page-loader" id="page-loader">
-    <div>
-      <div class="icon ion-spin"></div>
-      <p>sutygon-bot loading...</p>
-    </div>
+    <img src="img/loader.gif" width="30%">
   </div>
+
 
   <!-- BEGIN OF site header Menu -->
   <header class="page-header navbar page-header-alpha scrolled-white menu-right topmenu-right">
@@ -187,7 +186,7 @@
   <main class="page-main page-fullpage main-anim" id="mainpage">
 
     <!-- Begin of home section -->
-    <div class="section section-home fullscreen-md fp-auto-height-responsive main-home"
+    <div class="section section-home fullscreen-md fp-auto-height-responsive main-home "
     data-section="home">
       <!-- Begin of section wrapper -->
       <div class="section-wrapper">
@@ -210,7 +209,7 @@
             </div>
 
             <!-- begin of right content -->
-            <div class="col-12 col-md-6 right-content center-vh" id="logoSizing">
+            <div class=" col-md-6 right-content center-vh logo-hp" id="logoSizing">
               <!-- content -->
               <div class="section-content">
                 <!-- illustartion -->
@@ -237,22 +236,34 @@
     <!-- End of home section -->
 
     <!-- Begin of description section -->
-    <div class="section section-description fp-auto-height-responsive " data-section="about">
+    <div class="section section-description fp-auto-height-responsive" data-section="about">
       <!-- Begin of section wrapper -->
       <div class="section-wrapper center-vh dir-col anim">
         <!-- title -->
         <div class="section-title text-center">
           <h5 class="title-bg">About</h5>
           <h2 class="display-4 display-title anim-2">SUTYGON</h2>
+          <br><br><br>
         </div>
 
         <!-- content -->
         <div class="section-content reduced anim text-center">
-          <!-- title and description -->
+          <div class="row">
+          <div class="col-md-6 col-sm-12">
           <div class="title-desc anim-3">
-            <p>Toạ lạc trên con đường Nguyễn Chí Thanh, đội ngũ Sutygon mong muốn được mang đến những sản phẩm áo dài bưng quả, trang phục biểu diễn, và nhiều trang phục khác đầy đẳng cấp đến cho bạn.
-            Chúng tôi lấy niềm tự hào trong việc trao bạn một trải nghiệm thật tuyệt vời – vô vàn điểm thưởng và nhiều tiện ích khi bạn xài dịch vụ của chúng tôi.</p>
+             <p class="text-left">SUTYGON được thành lập bởi một đội ngũ chuyên nghiệp để mang đến những mặc hàng chất lượng tuyệt đối, giá cả phải chăng, và trải nghiệm đầy ngọt ngào. </p>
           </div>
+          </div>
+          <div class="col-md-1">
+
+          </div>
+          <div class="col-md-5 col-sm-12">
+          <div class="embed-responsive embed-responsive-16by9" id="sizingVideo">
+              <iframe class="embed-responsive-item" src="loop-bg.mp4" id="videoStyle"></iframe>
+          </div>
+          </div>
+          </div>
+
 
         </div>
 
@@ -467,6 +478,29 @@
 
   </footer>
   <!-- END OF site footer -->
+
+  <div class="walkthrough-overlay-container">
+    <div class="menu-cont">
+      <button class="navbar-toggler site-menu-icon" id="navMenuIcon">
+      <!-- Available class : menu-icon-dot / menu-icon-thick /menu-icon-random -->
+      <span class="menu-icon menu-icon-random">
+        <span class="bars">
+          <span class="bar1"></span>
+          <span class="bar2"></span>
+          <span class="bar3"></span>
+        </span>
+      </span>
+    </button>
+    </div>
+    <img src="img/whitearrow.png" class="arrow-img animate__animated animate__heartBeat">
+      <div class="walkthrough-verlay-1">
+        <h1 class="center-vh animate__animated animate__backInLeft">Use Sidebar icon to view Menu items</h1>
+        <p class="center-vh animate__animated animate__backInRight">click on the 3 bars to view the sidebar menu with more options</p>
+        <div class="center-vh">
+          <a href="#" onclick="setWalkthroughCompleted()" class="btn bttn-succes">Ok</a>
+        </div>
+      </div>
+  </div>
 
   <!-- scripts -->
   <!-- All Javascript plugins goes here -->
