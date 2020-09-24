@@ -46,6 +46,6 @@ app.get('/team', function(req, res) {
 })
 
 //Confirmation for 'node index.js' or 'nodemon'
-app.listen(process.env.PORT || 3000, function(){
+app.listen(process.env.PORT || 5000, function(){
 console.log('Port is running...');
 })
