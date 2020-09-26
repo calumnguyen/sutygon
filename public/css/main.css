@@ -6,7 +6,54 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
-
+h1{
+  font-family: 'Montserrat', sans-serif;
+}
+.table{
+  font-family: 'Montserrat', sans-serif;
+}
+.strong{
+  font-family: 'Montserrat' ,sans-serif;
+}
+.text-center{
+  font-family: 'Montserrat' ,sans-serif;
+}
+.text-only{
+  font-family: 'Montserrat',sans-serif;
+}
+.display-4{
+  font-family: 'Montserrat', sans-serif;
+}
+.anim-2{
+  font-family: 'Montserrat', sans-serif;
+}
+.btn{
+  font-family: 'Montserrat', sans-serif;
+}
+.txt{
+  font-family: 'Montserrat', sans-serif;
+}
+label{
+  font-family: 'Montserrat', sans-serif;
+}
+h3{
+  font-family: 'Montserrat', sans-serif;
+}
+h2{
+  font-family: 'Montserrat', sans-serif;
+}
+h4{
+  font-family: 'Montserrat', sans-serif;
+}
+h5{
+  font-family: 'Montserrat', sans-serif;
+}
+h6{
+  font-family: 'Montserrat', sans-serif;
+}
+p{
+  font-family: 'Montserrat', sans-serif;
+}
 #sizingVideo{
   width: 300px;
 }
@@ -18,6 +65,26 @@ input[type=number] {
     #sizingVideo{
        width: auto;
        height: auto;
+    }
+}
+@media screen and (max-width: 768px) {
+    #HideMenuBar{
+      visibility: hidden;
+      height: 0px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #SizingNavbar{
+      position: relative;
+      height: 10px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #loaderSizing{
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
     }
 }
 #videoStyle{
@@ -58,16 +125,46 @@ input[type=number] {
 #headingSize{
   position: relative;
   top: 20px;
+  font-family: 'Montserrat', sans-serif;
 }
 #headingSize1{
   position: relative;
   top: 50px;
+  font-family: 'Montserrat', sans-serif;
+}
+#headingSize3{
+  position: relative;
+  top: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+#headingSize4{
+  position: relative;
+  top: 50px;
+  font-family: 'Montserrat', sans-serif;
 }
 #rowSizingDown{
   top: 70px;
+  font-family: 'Montserrat', sans-serif;
 }
 #rowSizingDown1{
   top: 150px ;
+  font-family: 'Montserrat', sans-serif;
+}
+#rowSizingDown2{
+  top: 150px ;
+  font-family: 'Montserrat', sans-serif;
+}
+@media screen and (max-width: 768px) {
+    #rowSizingDown2{
+        top: 40px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #roundSize{
+        width: 90px;
+        height: 90px;
+        top: -20px;
+    }
 }
 @media screen and (max-width: 768px) {
     #rowSizingDown{
@@ -91,9 +188,45 @@ input[type=number] {
         top: 50px;
     }
 }
+@media screen and (max-width: 768px) {
+    #headingSize3{
+        position: relative;
+        top: 0px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #headingSize4{
+        position: relative;
+        top: 0px;
+    }
+}
 #rght{
   float: right;
   text-align: right;
+}
+@media screen and (max-width: 768px) {
+    #rght{
+         font-size: 8px;
+         display: block;
+         position: relative;
+         left: 40px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #rght1{
+         font-size: 9px;
+         display: block;
+         position: relative;
+         right: 30px;
+    }
+}
+@media screen and (max-width: 768px) {
+    #rght2{
+         position: relative;
+          font-size: 9px;
+         display: block;
+         left: -20px;
+    }
 }
 #ceoSize{
   top: -35px;
