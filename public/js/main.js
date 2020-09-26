@@ -285,7 +285,7 @@ $(document).on('ready', function () {
 	});
 	setTimeout(function(){
 		$('#page-loader').addClass('p-hidden');
-	 }, 10200);
+	}, 800);
 
 	// 10. Autoupdate year
 	var day = new Date();
