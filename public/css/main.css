@@ -6,6 +6,14 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+@media screen and (max-width: 768px) {
+    #footerColor{
+      
+      background-color: rgb(17,17,17);
+      width: 95%;
+      
+    }
+}
 h1{
   font-family: 'Montserrat', sans-serif;
 }
@@ -85,6 +93,7 @@ p{
     display: block;
     width: 100%;
     text-align: center;
+    top: 250px;
     }
 }
 #videoStyle{
@@ -192,6 +201,7 @@ p{
     #headingSize3{
         position: relative;
         top: 0px;
+
     }
 }
 @media screen and (max-width: 768px) {
