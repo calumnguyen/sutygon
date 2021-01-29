@@ -1,7 +1,8 @@
 import React from 'react'
 import {Helmet} from "react-helmet";
 import FooterComponent from "../footer/FooterComponent";
-import HeaderComponent from "../header/HeaderComponent";
+import HeaderComponentLogin from "../header/HeaderComponentLogin";
+import PageLoader from "../miscellaneous/PageLoader";
 
 function Login() {
 
@@ -10,53 +11,14 @@ function Login() {
     <div>
 
       <Helmet>
-        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css"/>
-        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"/>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"/>
         <title>Đăng nhập</title>
-        <meta name="description" content="Cửa hàng cho thuê áo dài và tổ chức sự kiện hàng đầu tại Đà Nẵng The leading company in event planning and rental clothes in Da Nang city."/>
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-        <meta name="twitter:site" content="@calumnguyen06"/>
-        <meta name="twitter:creator" content="@calumnguyen06"/>
-        <meta name="twitter:card" content="Vì sự hạnh phúc của quý khách"/>
-        <meta name="twitter:title" content="SUTYGON"/>
-        <meta name="twitter:description" content="Cửa hàng cho thuê áo dài và tổ chức sự kiện hàng đầu tại Đà Nẵng The leading company in event planning and rental clothes in Da Nang city."/>
-        <meta name="twitter:image" content="../img/bg-default.html"/>
-        <meta property="og:url" content="your website url here"/>
-        <meta property="og:title" content="Giới thiệu"/>
-        <meta property="og:description" content="Cửa hàng cho thuê áo dài và tổ chức sự kiện hàng đầu tại Đà Nẵng The leading company in event planning and rental clothes in Da Nang city."/>
-        <meta property="og:type" content="website"/>
-        <meta property="og:image" content="../img/bg-default.html"/>
-        <meta property="og:image:secure_url" content="../img/bg-default.html"/>
-        <meta property="og:image:type" content="image/jpg"/>
-        <meta property="og:image:width" content="1200"/>
-        <meta property="og:image:height" content="630"/>
-
-        <link rel="stylesheet" href="assets/fonts/opensans/stylesheet.css"/>
-        <link rel="stylesheet" href="assets/fonts/bebas/stylesheet.css"/>
-        <link rel="stylesheet" href="assets/fonts/ionicons.min.css"/>
-        <link rel="stylesheet" href="assets/fonts/font-awesome.min.css"/>
-
-
-        <link rel="stylesheet" href="assets/css/pageloader.css"/>
-
-
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
-
-        <link rel="stylesheet" href="assets/js/vendor/swiper.min.css"/>
-        <link rel="stylesheet" href="assets/js/vendor/jquery.fullpage.min.css"/>
-        <link rel="stylesheet" href="assets/js/vegas/vegas.min.css"/>
-
-        <link rel="stylesheet" href="assets/css/main.css"/>
-        <link rel="stylesheet" href="assets/css/style-default.css"/>
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
-
-        <script src="assets/js/vendor/modernizr-2.7.1.min.js"></script>
-
       </Helmet>
 
-      <HeaderComponent/>
+
+      <PageLoader/>
+
+      {/*problem*/}
+      <HeaderComponentLogin/>
 
 
 
@@ -92,7 +54,7 @@ function Login() {
                   {/*<!-- Registration form container-->*/}
                   <form className="send_email_form form-container form-container-transparent form-container-white">
 
-                    <div className="form-desc">
+                    <div className="form-desc" style={{color: 'white'}}>
                       <h2 className="display-4 display-title  anim-2">Đăng nhập</h2>
                       <p className="invite  anim-3">Đăng nhập ngay nào bạn ơi</p>
                     </div>
