@@ -1,7 +1,6 @@
 import React from 'react'
 import {Helmet} from "react-helmet";
-
-import HeaderComponent from "../header/HeaderComponent";
+import HeaderComponentBlack from "../header/HeaderComponentBlack";
 import FooterComponent from "../footer/FooterComponent";
 import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";
 import PageLoader from "../miscellaneous/PageLoader";
@@ -20,10 +19,7 @@ function MyOrder() {
 
       <PageLoader/>
 
-
-      {/* problem*/}
-      {/*<HeaderComponent/>*/}
-
+      <HeaderComponentBlack/>
 
       <main className="page-main page-fullpage main-anim" id="itempage">
 
@@ -155,7 +151,7 @@ function MyOrder() {
 
 
 
-      {/*problem*/}
+
       {/*<WalkthroughOverlayContainer/>*/}
 
 

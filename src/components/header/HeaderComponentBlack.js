@@ -1,8 +1,9 @@
 import React from 'react'
 import NavbarTopmenu from "../miscellaneous/NavbarTopmenu";
-import NavbarMainmenu from "../miscellaneous/NavbarMainmenu";
+import NavbarMainmenuBlack from "../miscellaneous/NavbarMainmenuBlack";
 
-function HeaderComponent() {
+
+function HeaderComponentBlack() {
 
   return (
 
@@ -30,7 +31,7 @@ function HeaderComponent() {
 
         <div className="all-menu-wrapper" id="navbarMenu">
           <NavbarTopmenu/>
-          <NavbarMainmenu/>
+          <NavbarMainmenuBlack/>
         </div>
 
       </header>
@@ -44,4 +45,4 @@ function HeaderComponent() {
 }
 
 
-export default HeaderComponent
+export default HeaderComponentBlack

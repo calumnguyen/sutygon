@@ -1,13 +1,14 @@
 import React from 'react'
 
-function NavbarMainmenu() {
+
+function NavbarMainmenuBlack() {
 
   return (
 
     <div>
 
       {/*<!-- Begin of hamburger mainmenu menu -->*/}
-      <nav className="navbar-mainmenu" style={{textAlign: 'left'}}>
+      <nav className="navbar-mainmenu" style={{textAlign: 'left', backgroundColor:  'black'}}>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
             <a className="nav-link" href="myorder">
@@ -45,4 +46,4 @@ function NavbarMainmenu() {
 }
 
 
-export default NavbarMainmenu
+export default NavbarMainmenuBlack

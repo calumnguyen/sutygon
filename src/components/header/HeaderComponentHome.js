@@ -4,7 +4,6 @@ import NavbarSidebar from "../miscellaneous/NavbarSidebar";
 import NavbarMainmenu from "../miscellaneous/NavbarMainmenu";
 
 
-{/*problem*/}
 function HeaderComponentHome() {
 
   return (

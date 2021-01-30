@@ -17,7 +17,6 @@ function Login() {
 
       <PageLoader/>
 
-      {/*problem*/}
       <HeaderComponentLogin/>
 
 

@@ -246,11 +246,11 @@ p{
   font-family: 'Montserrat', sans-serif;
 }
 #rowSizingDown1{
-  top: 150px ;
+  margin-top: 195px ;
   font-family: 'Montserrat', sans-serif;
 }
 #rowSizingDown2{
-  top: 150px ;
+    margin-top: 195px ;
   font-family: 'Montserrat', sans-serif;
 }
 @media screen and (max-width: 768px) {
@@ -2797,7 +2797,7 @@ textarea {
       .page-header-alpha .navbar-mainmenu {
         position: fixed;
         z-index: 9;
-        background: #1d1d1d;
+        background:  !important;
         display: flex;
         align-items: center;
         top: 0;

@@ -1,5 +1,6 @@
 $(document).ready(function() {
-   $(".light-logo").hide();
+
+  // $(".light-logo").hide();
    
     $(window).scroll(function() {
       var scroll = $(window).scrollTop();
@@ -10,6 +11,10 @@ $(document).ready(function() {
       }
     
     });
+
+
+
+
 
     $("#fp-nav ul").attr("class","navdot");
 

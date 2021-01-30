@@ -12,7 +12,7 @@ import {  } from "module";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{textAlign: 'left'}}>
 
       <BrowserRouter basename={'/'}>
         <Switch>

@@ -9,7 +9,7 @@ function NavbarSidebar() {
 
       {/*<!-- Begin of sidebar nav menu params class: text-only / icon-only-->*/}
 
-      <nav className="navbar-sidebar ">
+      <nav className="navbar-sidebar " style={{color: 'white', textAlign:'left'}}>
         <ul className="navbar-nav" id="qmenu">
           <li className="nav-item" data-menuanchor="home">
             <a href="/">
