@@ -220,7 +220,7 @@ function Home() {
                        aria-hidden="true">
                     <div className="modal-dialog modal-xl" role="document">
                       <div className="modal-content">
-                        <img className="img-fluid" src="assets/img/items/img-people1-square.jpg"/>
+                        <img className="img-fluid" src="assets/img/items/img-people1-square.jpg" alt={"Image"}/>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close" id="modalbtn">
                           <span aria-hidden="true">&times;</span>
                         </button>

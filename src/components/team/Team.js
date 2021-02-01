@@ -64,7 +64,7 @@ function Team() {
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
                           <Link>
-                            <img className="img" src="assets/img/items/MyLinh.png" alt="Image" id="roundSize" id="UpSizeImg"/>
+                            <img className="img" src="assets/img/items/MyLinh.png"  id="roundSize" id="UpSizeImg"/>
                           </Link>
                         </div>
                       </div>
@@ -108,7 +108,7 @@ function Team() {
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
                           <Link to={"#"}>
-                            <img className="img" src="assets/img/items/TanTai.png" alt="Image" id="roundSize" id="UpSizeImg"/>
+                            <img className="img" src="assets/img/items/TanTai.png" id="roundSize" id="UpSizeImg"/>
                           </Link>
 
                         </div>
@@ -138,7 +138,7 @@ function Team() {
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
                           <Link to={"#"}>
-                            <img className="img" src="assets/img/items/HuuTan.png" alt="Image" id="roundSize" id="UpSizeImg"/>
+                            <img className="img" src="assets/img/items/HuuTan.png" id="roundSize" id="UpSizeImg"/>
                           </Link>
                         </div>
                       </div>
@@ -179,7 +179,7 @@ function Team() {
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
                           <Link to={"#"}>
-                            <img className="img" src="assets/img/items/calumnguyen.png" alt="Image" id="roundSize"
+                            <img className="img" src="assets/img/items/calumnguyen.png" id="roundSize"
                                  id="UpSizeImg"/>
                           </Link>
 
