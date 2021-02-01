@@ -100,7 +100,7 @@ function Home() {
                 </div>
                 <div className="col-md-5 col-sm-12">
                   <div className="embed-responsive embed-responsive-16by9" id="sizingVideo">
-                    <iframe width="660" src="https://www.youtube.com/embed/Ui02o1wDvVk" frameBorder="0"
+                    <iframe title={"video link"} width="660" src="https://www.youtube.com/embed/Ui02o1wDvVk" frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen></iframe>
                   </div>
