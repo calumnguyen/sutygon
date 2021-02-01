@@ -112,10 +112,12 @@ function Home() {
 
 
             <footer className="section-footer scrolldown">
-              <a className="down">
+              <Link className={"down"}>
                 <span className="icon"></span>
                 <span className="txt">Products</span>
-              </a>
+              </Link>
+
+
             </footer>
           </div>
 
