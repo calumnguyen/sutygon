@@ -1,7 +1,7 @@
 import React from 'react'
 import {Helmet} from "react-helmet";
 import FooterComponent from "../footer/FooterComponent";
-import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";
+/*import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";*/
 import PageLoader from "../miscellaneous/PageLoader";
 import HeaderComponentHome from "../header/HeaderComponentHome";
 import {Link} from 'react-router-dom'
@@ -220,7 +220,7 @@ function Home() {
                        aria-hidden="true">
                     <div className="modal-dialog modal-xl" role="document">
                       <div className="modal-content">
-                        <img className="img-fluid" src="assets/img/items/img-people1-square.jpg" alt={"Image"}/>
+                        <img className="img-fluid" src="assets/img/items/img-people1-square.jpg" alt={""}/>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close" id="modalbtn">
                           <span aria-hidden="true">&times;</span>
                         </button>

@@ -2,7 +2,7 @@ import React from 'react'
 import {Helmet} from "react-helmet";
 import HeaderComponentLogin from "../header/HeaderComponentLogin";
 import FooterComponent from "../footer/FooterComponent";
-import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";
+/*import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";*/
 import PageLoader from "../miscellaneous/PageLoader";
 import {Link} from 'react-router-dom'
 
@@ -44,7 +44,7 @@ function Team() {
                     <div className="title-desc">
                       <h4 className="display-4 display-title anim-1">BẢN QUYỀN</h4>
                       <br/>
-                      <img src="assets/img/sutygon-bot.png" alt="Logo" width="150" className="logo1"/>
+                      <img src="assets/img/sutygon-bot.png" alt="" width="150" className="logo1"/>
                     </div>
                   </div>
                 </div>
@@ -64,7 +64,7 @@ function Team() {
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
                           <Link>
-                            <img className="img" src="assets/img/items/MyLinh.png"  id="roundSize" id="UpSizeImg"/>
+                            <img className="img" src="assets/img/items/MyLinh.png" alt={""}  id="roundSize"/>
                           </Link>
                         </div>
                       </div>
@@ -108,7 +108,7 @@ function Team() {
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
                           <Link to={"#"}>
-                            <img className="img" src="assets/img/items/TanTai.png" id="roundSize" id="UpSizeImg"/>
+                            <img className="img" src="assets/img/items/TanTai.png" alt={""}  id="roundSize"/>
                           </Link>
 
                         </div>
@@ -138,7 +138,7 @@ function Team() {
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
                           <Link to={"#"}>
-                            <img className="img" src="assets/img/items/HuuTan.png" id="roundSize" id="UpSizeImg"/>
+                            <img className="img" src="assets/img/items/HuuTan.png" alt={""}  id="roundSize"/>
                           </Link>
                         </div>
                       </div>
@@ -179,8 +179,7 @@ function Team() {
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
                           <Link to={"#"}>
-                            <img className="img" src="assets/img/items/calumnguyen.png" id="roundSize"
-                                 id="UpSizeImg"/>
+                            <img className="img" src="assets/img/items/calumnguyen.png" alt={""}  id="roundSize"/>
                           </Link>
 
                         </div>
