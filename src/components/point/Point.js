@@ -65,7 +65,7 @@ function Point() {
                         <div className="row">
                           <div className="col-12 col-md-12">
                             <img src="assets/img/diamond.gif" className="centered-gif" width="120px"
-                                 style={{marginBottom: "0px"}}/>
+                                 style={{marginBottom: "0px"}} alt={"Diamond"}/>
                             <h2 className="text-center" >Nguyễn Văn A</h2>
                             <h2 className="text-center"><span
                               className="badge badge-pill badge-danger">Thành Viên Kim Cương</span></h2>

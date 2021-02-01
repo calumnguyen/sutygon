@@ -63,9 +63,9 @@ function Team() {
                     <div className="images text-center" id="hideSides">
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
-                          <a>
+                          <Link>
                             <img className="img" src="assets/img/items/MyLinh.png" alt="Image" id="roundSize" id="UpSizeImg"/>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>

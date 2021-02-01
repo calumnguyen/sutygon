@@ -22,7 +22,7 @@ function WalkthroughOverlayContainer() {
           </button>
         </div>
 
-        <img src="assets/img/whitearrow.png" className="arrow-img animate__animated animate__heartBeat"/>
+        <img src="assets/img/whitearrow.png" className="arrow-img animate__animated animate__heartBeat" alt="WhiteArrow"/>
 
         <div className="walkthrough-verlay-1" style={{color: 'white'}}>
           <h1 className="center-vh animate__animated animate__backInLeft">Thêm nhiều bất ngờ</h1>
