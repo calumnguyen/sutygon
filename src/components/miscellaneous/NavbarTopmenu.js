@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 
 function NavbarTopmenu() {
@@ -10,9 +11,9 @@ function NavbarTopmenu() {
       <nav className="navbar-topmenu">
         <ul className="navbar-nav navbar-nav-actions">
           <li className="nav-item">
-            <a className="btn btn-outline-white btn-round" target="_blank" href="login">
+            <Link to={"login"} target={"_blank"} className={"btn btn-outline-white btn-round"}>
               Đăng nhập
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

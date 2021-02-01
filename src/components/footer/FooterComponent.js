@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 
 function FooterComponent() {
@@ -10,9 +11,10 @@ function FooterComponent() {
       <footer className="page-footer">
 
         <div className="footer-left" id="footerColor">
-          <p>Bản quyền <a href="" target="_blank">
+          <p>Bản quyền
+            <Link to={""} target={"_blank"}>
               <span className="marked">SUTYGON-BOT. </span>
-            </a>
+            </Link>
             <span></span> All rights reserved <span id='copyrightyear'>year</span>
           </p>
         </div>

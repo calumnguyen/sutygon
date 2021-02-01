@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 function NavbarMainmenu() {
 
@@ -10,28 +11,28 @@ function NavbarMainmenu() {
       <nav className="navbar-mainmenu" style={{textAlign: 'left'}}>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <a className="nav-link" href="myorder">
+            <Link to={"myorder"} className={"nav-link"}>
               <i className="las la-shopping-bag" id="hideIcon"></i>
               <span className="txt">Đơn hàng</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="point">
+            <Link to={"point"} className={"nav-link"}>
               <i className="las la-money-check-alt" id="hideIcon"></i>
               <span className="txt">Điểm thưởng</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="store">
+            <Link to={"store"} className={"nav-link"}>
               <i className="las la-building" id="hideIcon"></i>
               <span className="txt">Cửa hàng</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="team">
+            <Link to={"team"} className={"nav-link"}>
               <i className="las la-user-friends" id="hideIcon"></i>
               <span className="txt">Team</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

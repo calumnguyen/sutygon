@@ -2,6 +2,7 @@ import React from 'react'
 import NavbarTopmenu from "../miscellaneous/NavbarTopmenu";
 import NavbarSidebar from "../miscellaneous/NavbarSidebar";
 import NavbarMainmenu from "../miscellaneous/NavbarMainmenu";
+import {Link} from 'react-router-dom'
 
 
 function HeaderComponentHome() {
@@ -30,11 +31,12 @@ function HeaderComponentHome() {
 
 
         {/*<!-- Begin of logo/brand -->*/}
-        <a className="navbar-brand" href="/">
+        <Link to={"/"} className={"navbar-brand"}>
           <span className="logo">
             <img className="light-logo" src="assets/img/1.png" alt="Logo" style={{display: 'inline'}}/>
           </span>
-        </a>
+        </Link>
+
         {/*<!-- End of logo/brand -->*/}
 
 

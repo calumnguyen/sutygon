@@ -3,6 +3,7 @@ import {Helmet} from "react-helmet";
 import FooterComponent from "../footer/FooterComponent";
 import HeaderComponentLogin from "../header/HeaderComponentLogin";
 import PageLoader from "../miscellaneous/PageLoader";
+import {Link} from 'react-router-dom'
 
 function Login() {
 
@@ -72,10 +73,11 @@ function Login() {
                         <input id="login-pas" name="password" className="form-control-line form-control-white"
                                type="text"/>
 
-                        <label for="login-number">Quên mật khẩu? Đừng lo, <a href="setpass"><u>nhấn đây</u></a>
+                        <label for="login-number">Quên mật khẩu? Đừng lo,<Link to={"setpass"}><u>nhấn đây</u></Link>
+
                         </label>
 
-                        <label>Chưa có tài khoản? <a href="register"><u>Đăng ký nhanh.</u></a>
+                        <label>Chưa có tài khoản?<Link to={"register"}><u>Đăng ký nhanh.</u></Link>
                         </label>
                       </div>
 

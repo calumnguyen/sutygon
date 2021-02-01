@@ -4,6 +4,7 @@ import HeaderComponentLogin from "../header/HeaderComponentLogin";
 import FooterComponent from "../footer/FooterComponent";
 import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";
 import PageLoader from "../miscellaneous/PageLoader";
+import {Link} from 'react-router-dom'
 
 
 function Team() {
@@ -106,9 +107,10 @@ function Team() {
                     <div className="images text-center">
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
-                          <a href="#">
+                          <Link to={"#"}>
                             <img className="img" src="assets/img/items/TanTai.png" alt="Image" id="roundSize" id="UpSizeImg"/>
-                          </a>
+                          </Link>
+
                         </div>
                       </div>
                     </div>
@@ -135,9 +137,9 @@ function Team() {
                     <div className="images text-center">
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
-                          <a href="#">
+                          <Link to={"#"}>
                             <img className="img" src="assets/img/items/HuuTan.png" alt="Image" id="roundSize" id="UpSizeImg"/>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -176,10 +178,11 @@ function Team() {
                     <div className="images text-center">
                       <div className="img-avatar-alpha">
                         <div className="img-1 shadow">
-                          <a href="#">
+                          <Link to={"#"}>
                             <img className="img" src="assets/img/items/calumnguyen.png" alt="Image" id="roundSize"
                                  id="UpSizeImg"/>
-                          </a>
+                          </Link>
+
                         </div>
                       </div>
                     </div>

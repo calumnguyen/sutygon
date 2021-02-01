@@ -1,7 +1,7 @@
 import React from 'react'
 import NavbarTopmenu from "../miscellaneous/NavbarTopmenu";
 import NavbarMainmenuBlack from "../miscellaneous/NavbarMainmenuBlack";
-
+import {Link} from 'react-router-dom'
 
 function HeaderComponentBlack() {
 
@@ -22,11 +22,11 @@ function HeaderComponentBlack() {
           </span>
         </button>
 
-        <a className="navbar-brand" href="/">
+        <Link to={"/"} className={"navbar-brand"}>
           <span className="logo">
             <img className="light-logo" src="assets/img/1.png" alt="Logo"/>
           </span>
-        </a>
+        </Link>
 
 
         <div className="all-menu-wrapper" id="navbarMenu">

@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 {/*problem*/}
 function WalkthroughOverlayContainer() {
@@ -28,7 +29,7 @@ function WalkthroughOverlayContainer() {
           <p className="center-vh animate__animated animate__backInRight">Bấm vào nút 3-gạch này để xem điểm thưởng, đơn
             hàng, thông tin cửa hàng và TEAM SUTYGON nhé bạn!</p>
           <div className="center-vh">
-            <a href="#" onClick="setWalkthroughCompleted()" className="btn bttn-succes">Ok</a>
+            <Link to={"#"} onClick={"setWalkthroughCompleted()"} className={"btn bttn-succes"}>Ok</Link>
           </div>
         </div>
       </div>

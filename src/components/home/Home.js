@@ -4,7 +4,7 @@ import FooterComponent from "../footer/FooterComponent";
 import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";
 import PageLoader from "../miscellaneous/PageLoader";
 import HeaderComponentHome from "../header/HeaderComponentHome";
-
+import {Link} from 'react-router-dom'
 
 
 
@@ -49,9 +49,9 @@ function Home() {
 
 
                   <div className="btns-action anim-3">
-                    <a className="btn btn-outline-white btn-round" href="login">
+                    <Link to={"login"} className={"btn btn-outline-white btn-round"}>
                       Đăng nhập
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
@@ -139,17 +139,18 @@ function Home() {
                     <div className="product-box">
                       <div className="img-wrapper">
                         <div className="front">
-                          <a href="#" data-toggle="modal" data-target="#xlarge">
+                          <Link to={"#"} data-toggle={"modal"} data-target={"#xlarge"}>
                             <img alt="" className="img-fluid" src="assets/img/items/img-people1-square.jpg"/>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <div className="card-body">
                         <div className="product-detail">
                           <div>
-                            <a href="#" data-toggle="modal" data-target="#xlarge">
+                            <Link to={"#"} data-toggle={"modal"} data-target={"#xlarge"}>
                               <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
+                            </Link>
+
                             <h4 id="headingBreak"><span className="fas fa-qrcode"> 0123456</span><br/><span
                               className="fas fa-money-check-alt"> 500.00</span></h4>
                           </div>
@@ -164,17 +165,18 @@ function Home() {
                     <div className="product-box">
                       <div className="img-wrapper">
                         <div className="front">
-                          <a href="#" data-toggle="modal" data-target="#xlarge">
+                          <Link to={"#"} data-toggle={"modal"} data-target={"#xlarge"}>
                             <img alt="" className="img-fluid" src="assets/img/items/img-people1-square.jpg"/>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <div className="card-body">
                         <div className="product-detail">
                           <div>
-                            <a href="#" data-toggle="modal" data-target="#xlarge">
+                            <Link to={"#"} data-toggle={"modal"} data-target={"#xlarge"}>
                               <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
+                            </Link>
+
                             <h4 id="headingBreak"><span className="fas fa-qrcode"> 0123456</span><br/><span
                               className="fas fa-money-check-alt"> 500.00</span></h4>
                           </div>
@@ -189,17 +191,18 @@ function Home() {
                     <div className="product-box">
                       <div className="img-wrapper">
                         <div className="front">
-                          <a href="#" data-toggle="modal" data-target="#xlarge">
+                          <Link to={"#"} data-toggle={"modal"} data-target={"#xlarge"}>
                             <img alt="" className="img-fluid" src="assets/img/items/img-people1-square.jpg"/>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                       <div className="card-body">
                         <div className="product-detail">
                           <div>
-                            <a href="#" data-toggle="modal" data-target="#xlarge">
+                            <Link to={"#"} data-toggle={"modal"} data-target={"#xlarge"}>
                               <h6>Slim Fit Cotton Shirt</h6>
-                            </a>
+                            </Link>
+
                             <h4 id="headingBreak"><span className="fas fa-qrcode"> 0123456</span><br/><span
                               className="fas fa-money-check-alt"> 500.00</span></h4>
                           </div>
@@ -228,11 +231,11 @@ function Home() {
                           <button type="button" className="btn grey btn-outline-secondary"
                                   data-dismiss="modal">Close
                           </button>
-                          <a href="contactstore">
+                          <Link to={"contactstore"}>
                             <button type="button" className="btn btn-outline-primary" href="contactstore">Contact
                               Store
                             </button>
-                          </a>
+                          </Link>
                         </div>
 
                       </div>
@@ -339,9 +342,9 @@ function Home() {
 
 
                     <div className="btns-action anim-4">
-                      <a className="btn btn-outline-white btn-round" href="#contact/message">
+                      <Link to={"#contact/message"} className={"btn btn-outline-white btn-round"}>
                         <span className="txt">Gửi tin nhắn nhanh</span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -373,9 +376,9 @@ function Home() {
 
 
                     <div className="btns-action">
-                      <a className="btn btn-outline-white btn-round" href="store">
+                      <Link className={"btn btn-outline-white btn-round"} to={"store"}>
                         <span className="txt">Thông tin cửa hàng</span>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

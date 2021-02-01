@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from 'react-router-dom'
 
 function NavbarSidebar() {
 
@@ -12,22 +12,23 @@ function NavbarSidebar() {
       <nav className="navbar-sidebar " style={{color: 'white', textAlign:'left'}}>
         <ul className="navbar-nav" id="qmenu">
           <li className="nav-item" data-menuanchor="home">
-            <a href="/">
+            <Link to={"/"}>
               <i className="icon ion-ios-home-outline"></i>
               <span className="txt">Trang chủ</span>
-            </a>
+            </Link>
           </li>
           <li className="nav-item" data-menuanchor="register">
-            <a href="register">
+            <Link to="register">
               <i className="icon ion-ios-compose-outline"></i>
               <span className="txt">Đăng ký</span>
-            </a>
+            </Link>
           </li>
+
           <li className="nav-item" data-menuanchor="contact">
-            <a href="contact">
+            <Link to={"contact"}>
               <i className="icon ion-ios-telephone-outline"></i>
               <span className="txt">Liên hệ</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

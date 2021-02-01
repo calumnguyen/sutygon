@@ -2,6 +2,7 @@ import React from 'react'
 import NavbarTopmenu from "../miscellaneous/NavbarTopmenu";
 import NavbarSidebar from "../miscellaneous/NavbarSidebar";
 import NavbarMainmenu from "../miscellaneous/NavbarMainmenu";
+import {Link} from "react-router-dom";
 
 {/*problem*/}
 function HeaderComponentLogin() {
@@ -30,11 +31,12 @@ function HeaderComponentLogin() {
 
 
         {/*<!-- Begin of logo/brand -->*/}
-        <a className="navbar-brand" href="/">
+        <Link className={"navbar-brand"} to={"/"}>
           <span className="logo">
             <img className="light-logo" src="assets/img/1.png" alt="Logo" style={{display: 'inline'}}/>
           </span>
-        </a>
+        </Link>
+
         {/*<!-- End of logo/brand -->*/}
 
 
