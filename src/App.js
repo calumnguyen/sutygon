@@ -5,10 +5,15 @@ import MyOrder from "./components/myorder/MyOrder";
 import Team from "./components/team/Team";
 import Store from "./components/store/Store";
 import Point from "./components/point/Point";
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
-
+import { BrowserRouter, Route, Link } from "react-router-dom";
+ 
 
 function App() {
+// using CommonJS modules
+const BrowserRouter = require("react-router-dom").BrowserRouter;
+const Route = require("react-router-dom").Route;
+const Link = require("react-router-dom").Link;
+
   return (
     <div className="App" style={{textAlign: 'left'}}>
 
