@@ -6,17 +6,19 @@ import Team from "./components/team/Team";
 import Store from "./components/store/Store";
 import Point from "./components/point/Point";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
- 
+import { createBrowserHistory } from "history";
 // using CommonJS modules
 // const BrowserRouter = require("react-router-dom").BrowserRouter;
 // const Route = require("react-router-dom").Route;
 // const Switch = require("react-router-dom").Switch;
 
 function App() {
+  const appHistory = createBrowserHistory();
   return (
+    
     <div className="App" style={{textAlign: 'left'}}>
 
-      <BrowserRouter basename={'/'}>
+      <BrowserRouter basename={'/'} history={appHistory}>
         <Switch>
 
           <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home}/>
