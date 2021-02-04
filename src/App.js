@@ -8,9 +8,9 @@ import Point from "./components/point/Point";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
  
 // using CommonJS modules
-const BrowserRouter = require("react-router-dom").BrowserRouter;
-const Route = require("react-router-dom").Route;
-const Switch = require("react-router-dom").Switch;
+// const BrowserRouter = require("react-router-dom").BrowserRouter;
+// const Route = require("react-router-dom").Route;
+// const Switch = require("react-router-dom").Switch;
 
 function App() {
   return (
