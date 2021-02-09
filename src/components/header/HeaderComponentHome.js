@@ -31,9 +31,10 @@ function HeaderComponentHome() {
 
 
         {/*<!-- Begin of logo/brand -->*/}
-        <Link to={"/"} className={"navbar-brand"}>
+        
+        <Link className={"navbar-brand"} to={"#home"}>
           <span className="logo">
-            <img className="light-logo" src="assets/img/1.png" alt="Logo" style={{display: 'inline'}}/>
+            <img className="light-logo" src="assets/img/1.png" alt="Logo"/>
           </span>
         </Link>
 

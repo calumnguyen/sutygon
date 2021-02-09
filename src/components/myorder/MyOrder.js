@@ -12,9 +12,17 @@ function MyOrder() {
 
     <div>
 
+
       <Helmet>
         <title>Đơn Hàng Của Tôi</title>
+
       </Helmet>
+
+      {/*window["func_reload"]()*/}
+
+      {/*  function func (){*/}
+      {/*  window.func_reload()*/}
+      {/*}*/}
 
 
       <PageLoader/>
@@ -147,9 +155,6 @@ function MyOrder() {
         </div>
 
       </main>
-
-
-
 
 
       {/*<WalkthroughOverlayContainer/>*/}

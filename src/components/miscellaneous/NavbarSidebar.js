@@ -6,7 +6,6 @@ function NavbarSidebar() {
   return (
 
     <div>
-
       {/*<!-- Begin of sidebar nav menu params class: text-only / icon-only-->*/}
 
       <nav className="navbar-sidebar " style={{color: 'white', textAlign:'left'}}>
@@ -18,7 +17,7 @@ function NavbarSidebar() {
             </Link>
           </li>
           <li className="nav-item" data-menuanchor="register">
-            <Link to="register">
+            <Link to="/login">
               <i className="icon ion-ios-compose-outline"></i>
               <span className="txt">Đăng ký</span>
             </Link>

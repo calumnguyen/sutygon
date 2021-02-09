@@ -4,7 +4,10 @@
 /node_modules
 /.pnp
 .pnp.js
+<<<<<<< HEAD
 /.netlify
+=======
+>>>>>>> 4ae03333d01e08a3e4d8e9e87168808255c15ec7
 
 # testing
 /coverage

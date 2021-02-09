@@ -1,24 +1,37 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import $ from 'jquery';
 
 {/*problem*/}
+function forced_reload(){
+  setTimeout(() => {
+    <script type={"text/javascript"}>
+    function func_reload(){
+      window.location.reload(true)
+    }
+  
+      window.func_reload()
+    </script>
+  
+  },500)
+  
+}
+
 function WalkthroughOverlayContainer() {
-   const [showComponent, setShowComponent] = useState(true);
-   const setWalkthroughCompleted2 =()=> {
-     $('.walkthrough-overlay-container').hide();
-     localStorage.setItem("walkthrough", "completed")
-   }
-   useEffect(()=>{
-     let isComplete = localStorage.getItem("walkthrough");
-     if(isComplete === "completed"){
-      setShowComponent(false)
-     }
-   }, [])
+
+  const setWalkthroughCompleted2 =()=> {
+    document.cookie = "walkthrough=completed";
+    $('.walkthrough-overlay-container').hide();
+
+
+  }
+
   return (
 
     <div>
-      <div className="walkthrough-overlay-container" style={{display: showComponent ? "block" : "none"}}>
+
+      <div className="walkthrough-overlay-container">
+
         <div className="menu-cont">
           <button className="navbar-toggler site-menu-icon" id="navMenuIcon">
           <span className="menu-icon menu-icon-random">
@@ -30,15 +43,15 @@ function WalkthroughOverlayContainer() {
           </span>
           </button>
         </div>
+
         <img src="assets/img/whitearrow.png" className="arrow-img animate__animated animate__heartBeat" alt="WhiteArrow"/>
+
         <div className="walkthrough-verlay-1" style={{color: 'white'}}>
           <h1 className="center-vh animate__animated animate__backInLeft">Thêm nhiều bất ngờ</h1>
           <p className="center-vh animate__animated animate__backInRight">Bấm vào nút 3-gạch này để xem điểm thưởng, đơn
             hàng, thông tin cửa hàng và TEAM SUTYGON nhé bạn!</p>
           <div className="center-vh">
-            <Link to={"#"} 
-             onClick={()=>setWalkthroughCompleted2()} 
-            className={"btn bttn-succes"}>Ok</Link>
+            <Link to={"#"} onClick={()=> {setWalkthroughCompleted2();forced_reload()}} className={"btn bttn-succes"}>Ok</Link>
           </div>
         </div>
       </div>

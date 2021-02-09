@@ -2,7 +2,7 @@ import React from 'react'
 import {Helmet} from "react-helmet";
 import HeaderComponentLogin from "../header/HeaderComponentLogin";
 import FooterComponent from "../footer/FooterComponent";
-import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";
+/*import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";*/
 import PageLoader from "../miscellaneous/PageLoader";
 import {Link} from 'react-router-dom'
 
@@ -209,7 +209,7 @@ function Team() {
       <FooterComponent id="site-footer"/>
 
 
-      <WalkthroughOverlayContainer/>
+      {/*<WalkthroughOverlayContainer/>*/}
 
     </div>
 

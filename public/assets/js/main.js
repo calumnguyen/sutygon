@@ -298,7 +298,7 @@ $(document).on('ready', function () {
 		// document.cookie = "walkthrough=;"
 
 		// hide waklthrough box
-		// $('.walkthrough-overlay-container').hide();
+		$('.walkthrough-overlay-container').hide();
 	}
 });
 
@@ -317,7 +317,7 @@ function getCookie(cname) {
   }
   return "";
 }
-// function setWalkthroughCompleted() {
-// 	document.cookie = "walkthrough=completed";
-// 	$('.walkthrough-overlay-container').hide();
-// }
+function setWalkthroughCompleted() {
+	document.cookie = "walkthrough=completed";
+	$('.walkthrough-overlay-container').hide();
+}

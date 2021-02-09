@@ -1,6 +1,20 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
+function forced_reload(){
+  setTimeout(() => {
+    <script type={"text/javascript"}>
+    function func_reload(){
+      window.location.reload(true)
+    }
+  
+      window.func_reload()
+    </script>
+  
+  },500)
+  
+}
+
 function NavbarMainmenu() {
 
   return (
@@ -11,25 +25,25 @@ function NavbarMainmenu() {
       <nav className="navbar-mainmenu" style={{textAlign: 'left'}}>
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link to={"myorder"} className={"nav-link"}>
+            <Link to={"/myorder"} className={"nav-link"} onClick={forced_reload}>
               <i className="las la-shopping-bag" id="hideIcon"></i>
               <span className="txt">Đơn hàng</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"point"} className={"nav-link"}>
+            <Link to={"/point"} className={"nav-link"} onClick={forced_reload}>
               <i className="las la-money-check-alt" id="hideIcon"></i>
               <span className="txt">Điểm thưởng</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"store"} className={"nav-link"}>
+            <Link to={"/store"} className={"nav-link"} onClick={forced_reload}>
               <i className="las la-building" id="hideIcon"></i>
               <span className="txt">Cửa hàng</span>
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"team"} className={"nav-link"}>
+            <Link to={"/team"} className={"nav-link"} onClick={forced_reload}>
               <i className="las la-user-friends" id="hideIcon"></i>
               <span className="txt">Team</span>
             </Link>
