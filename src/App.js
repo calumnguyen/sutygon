@@ -7,7 +7,6 @@ import Store from "./components/store/Store";
 import Point from "./components/point/Point";
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
-
 function App() {
   return (
     <div className="App" style={{textAlign: 'left'}}>
@@ -15,12 +14,14 @@ function App() {
       <BrowserRouter basename={'/'}>
         <Switch>
 
-          <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home}/>
-          <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login}/>
-          <Route exact path={`${process.env.PUBLIC_URL}/myorder`} component={MyOrder}/>
-          <Route exact path={`${process.env.PUBLIC_URL}/team`} component={Team}/>
-          <Route exact path={`${process.env.PUBLIC_URL}/store`} component={Store}/>
-          <Route exact path={`${process.env.PUBLIC_URL}/point`} component={Point}/>
+          <Route exact path={'/'} component={Home}/>
+          <Route exact path={'/login'} component={Login}/>
+          <Route exact path={'/myorder'} component={MyOrder}/>
+          <Route exact path={'/team'} component={Team}/>
+          <Route exact path={'/store'} component={Store}/>
+          <Route exact path={'/point'} component={Point}/>
+
+          {/*<Route exact path={`${process.env.PUBLIC_URL}/point`} component={Point}/>*/}
 
         </Switch>
       </BrowserRouter>
