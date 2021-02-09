@@ -8,6 +8,8 @@ function WalkthroughOverlayContainer() {
   const setWalkthroughCompleted2 =()=> {
     document.cookie = "walkthrough=completed";
     $('.walkthrough-overlay-container').hide();
+
+
   }
 
   return (
