@@ -58,6 +58,5 @@
   "devDependencies": {
     "netlify-cli": "^3.4.6",
     "react-router-dom": "^5.2.0"
-  },
-  "proxy": "http://localhost:5000"
+  }
 }
