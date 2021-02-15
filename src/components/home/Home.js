@@ -66,7 +66,7 @@ function Home() {
 
 
                     <div className="btns-action anim-3">
-                      <Link to={"login"} className={"btn btn-outline-white btn-round"}>
+                      <Link to={"login"} className={"btn btn-outline-white btn-round"} onClick={forced_reload}>
                         Đăng nhập
                       </Link>
                     </div>
