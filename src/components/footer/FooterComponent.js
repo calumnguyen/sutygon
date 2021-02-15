@@ -12,7 +12,7 @@ function FooterComponent() {
 
         <div className="footer-left" id="footerColor">
           <p>Bản quyền
-            <Link to={""} target={"_blank"}>
+            <Link to={"https://sutygon.herokuapp.com/"} target={"_blank"}>
               <span className="marked">SUTYGON-BOT. </span>
             </Link>
             <span></span> All rights reserved <span id='copyrightyear'>year</span>

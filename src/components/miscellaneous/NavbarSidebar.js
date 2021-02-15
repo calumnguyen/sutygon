@@ -1,6 +1,19 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
+function forced_reload(){
+  setTimeout(() => {
+    <script type={"text/javascript"}>
+    function func_reload(){
+      window.location.reload(true)
+    }
+  
+      window.func_reload()
+    </script>
+  
+  },100)
+  
+}
 function NavbarSidebar() {
 
   return (
@@ -17,14 +30,14 @@ function NavbarSidebar() {
             </Link>
           </li>
           <li className="nav-item" data-menuanchor="register">
-            <Link to="/register">
+            <Link to="/register" onClick={forced_reload} >
               <i className="icon ion-ios-compose-outline"></i>
               <span className="txt">Đăng ký</span>
             </Link>
           </li>
 
           <li className="nav-item" data-menuanchor="contact">
-            <Link to={"contact"}>
+            <Link to={"/contact"} onClick={forced_reload}>
               <i className="icon ion-ios-telephone-outline"></i>
               <span className="txt">Liên hệ</span>
             </Link>

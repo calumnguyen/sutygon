@@ -62,18 +62,18 @@ function Login() {
                     <div className="form-input  anim-4">
 
                       <div className="form-group form-success-gone">
-                        <label for="login-number">10 Chữ Số Điện Thoại Của Bạn</label>
+                        <label htmlFor="login-number">10 Chữ Số Điện Thoại Của Bạn</label>
                         <input id="login-num" name="number" className="form-control-line form-control-white"
                                type="number"
                                min="0"/>
                       </div>
 
                       <div className="form-group form-success-gone">
-                        <label for="login-pasword">Nhập Mật Khẩu</label>
+                        <label htmlFor="login-pasword">Nhập Mật Khẩu</label>
                         <input id="login-pas" name="password" className="form-control-line form-control-white"
                                type="text"/>
 
-                        <label for="login-number">Quên mật khẩu? Đừng lo,<Link to={"setpass"}><u>nhấn đây</u></Link>
+                        <label htmlFor="login-number">Quên mật khẩu? Đừng lo,<Link to={"setpass"}><u>nhấn đây</u></Link>
 
                         </label>
 

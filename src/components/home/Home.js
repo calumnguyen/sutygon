@@ -6,7 +6,19 @@ import PageLoader from "../miscellaneous/PageLoader";
 import HeaderComponentHome from "../header/HeaderComponentHome";
 import {Link} from 'react-router-dom'
 
-
+function forced_reload(){
+  setTimeout(() => {
+    <script type={"text/javascript"}>
+    function func_reload(){
+      window.location.reload(true)
+    }
+  
+      window.func_reload()
+    </script>
+  
+  },100)
+  
+}
 function Home() {
   return (
 
@@ -293,20 +305,20 @@ function Home() {
 
                       <div className="form-input  anim-4">
                         {/* <div className="form-group form-success-gone">
-                          <label for="reg-number">10 Chữ Số Điện Thoại Của Bạn</label>
+                          <label htmlFor="reg-number">10 Chữ Số Điện Thoại Của Bạn</label>
                           <input id="reg-num" name="number"
                                  className="form-control-line form-control-white" type="number"
                                  min="0"
                           />
                         </div> */}
                         {/* <div className="form-group form-success-gone">
-                          <label for="reg-pasword">Nhập Mật Khẩu Mới</label>
+                          <label htmlFor="reg-pasword">Nhập Mật Khẩu Mới</label>
                           <input id="reg-pas" name="password"
                                  className="form-control-line form-control-white"
                                  type="number" min="0"
                           />
                         </div> */}
-                        <Link to="/register" id="submit-num"
+                        <Link to="/register" id="submit-num" onClick={forced_reload}
                                 className="btn btn-white btn-round btn-full form-success-gone text-center px-1"
                                 name="submit_num">Click here to get yourself registered
                         </Link>
@@ -420,19 +432,19 @@ function Home() {
                           <form className="send_message_form message form" method="post"
                                 id="message_form">
                             <div className="form-group name">
-                              <label for="mes-name">Mình tên là</label>
+                              <label htmlFor="mes-name">Mình tên là</label>
                               <input id="mes-name" name="name" type="text" placeholder=""
                                      className="form-control-line form-success-clean"
                                      required/>
                             </div>
                             <div className="form-group email">
-                              <label for="mes-email">Địa chỉ email là</label>
+                              <label htmlFor="mes-email">Địa chỉ email là</label>
                               <input id="mes-email" type="email" placeholder="" name="email"
                                      className="form-control-line form-success-clean"
                                      required/>
                             </div>
                             <div className="form-group no-border">
-                              <label for="mes-text">Lời nhắn mà mình muốn gửi</label>
+                              <label htmlFor="mes-text">Lời nhắn mà mình muốn gửi</label>
                               <textarea id="mes-text"
                                         placeholder="Sutygon đã mang đến cho mình một trải nghiệm thật tuyệt vời!"
                                         name="message"

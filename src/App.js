@@ -21,7 +21,6 @@ function App() {
  <Provider store={store}>
       <BrowserRouter basename={'/'}>
         <Switch>
-
           <Route exact path={`${process.env.PUBLIC_URL}/`} component={Home}/>
           <Route exact path={`${process.env.PUBLIC_URL}/login`} component={Login}/>
           <Route exact path={`${process.env.PUBLIC_URL}/register`} component={Register}/>
