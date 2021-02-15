@@ -17,7 +17,7 @@ function NavbarSidebar() {
             </Link>
           </li>
           <li className="nav-item" data-menuanchor="register">
-            <Link to="/login">
+            <Link to="/register">
               <i className="icon ion-ios-compose-outline"></i>
               <span className="txt">Đăng ký</span>
             </Link>

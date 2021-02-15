@@ -117,6 +117,9 @@ h1{
 .display-4{
   font-family: 'Montserrat', sans-serif;
 }
+.display-6{
+  font-family: 'Montserrat', sans-serif;
+}
 .anim-2{
   font-family: 'Montserrat', sans-serif;
 }
@@ -252,6 +255,15 @@ p{
 #rowSizingDown2{
     margin-top: 195px ;
   font-family: 'Montserrat', sans-serif;
+}
+.react-tel-input .country-list{
+opacity: 1;  width: 320px !important;   
+}
+.react-tel-input .form-control{
+  width: 320px !important;   
+}
+.react-datepicker-wrapper {
+width:320px
 }
 @media screen and (max-width: 768px) {
     #rowSizingDown2{
@@ -4859,10 +4871,12 @@ textarea {
   font-size: 2rem;
   font-weight: 300;
   line-height: 1.1;
-  font-weight: bold; }
+  font-weight: bold;
+ }
   @media (min-width: 768px) {
     .display-4 {
       font-size: 3.5rem; } }
+
 
 .display-5 {
   font-size: 1.5rem;
@@ -4873,8 +4887,18 @@ textarea {
       font-size: 3rem; } }
 
 .display-title {
-  margin-bottom: 1rem; }
+  margin-bottom: 1rem;}
 
+  .display-6 {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.1;
+    font-weight: bold;
+   }
+    @media (min-width: 768px) {
+      .display-6 {
+        font-size: 3.2rem;display:inline-block;margin:-8rem -8rem 1rem} }
+  
 @media (max-width: 575px) {
   .text-right-sm {
     text-align: right !important; } }
@@ -4969,3 +4993,15 @@ h1, h2, h3, h4 {
   margin: 0 auto;
   margin-bottom: 40px;
 }
+
+#global-notification .alert.alert-success {
+  background-color: #3AA57B;
+} 
+#global-notification .alert.alert-danger{
+  background-color: #ff7c70;
+  border: #ff7c70;
+} 
+
+.alert .alert-success {
+  background-color: #3AA57B;
+} 

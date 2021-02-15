@@ -292,24 +292,24 @@ function Home() {
                       </div>
 
                       <div className="form-input  anim-4">
-                        <div className="form-group form-success-gone">
+                        {/* <div className="form-group form-success-gone">
                           <label for="reg-number">10 Chữ Số Điện Thoại Của Bạn</label>
                           <input id="reg-num" name="number"
                                  className="form-control-line form-control-white" type="number"
                                  min="0"
                           />
-                        </div>
-                        <div className="form-group form-success-gone">
+                        </div> */}
+                        {/* <div className="form-group form-success-gone">
                           <label for="reg-pasword">Nhập Mật Khẩu Mới</label>
                           <input id="reg-pas" name="password"
                                  className="form-control-line form-control-white"
                                  type="number" min="0"
                           />
-                        </div>
-                        <button id="submit-num"
-                                className="btn btn-white btn-round btn-full form-success-gone"
-                                name="submit_num">Đăng ký với đầy niềm vui
-                        </button>
+                        </div> */}
+                        <Link to="/register" id="submit-num"
+                                className="btn btn-white btn-round btn-full form-success-gone text-center px-1"
+                                name="submit_num">Click here to get yourself registered
+                        </Link>
                       </div>
                     </form>
 
@@ -418,7 +418,6 @@ function Home() {
                         <div className="form-container form-container-card">
 
                           <form className="send_message_form message form" method="post"
-                                action="https://demo.highhay.com/simpleux/ajaxserver/serverfile.php"
                                 id="message_form">
                             <div className="form-group name">
                               <label for="mes-name">Mình tên là</label>
