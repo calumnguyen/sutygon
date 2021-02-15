@@ -21,7 +21,7 @@ export const addNewCustomer = (customer) => async (dispatch) => {
 
   const body = JSON.stringify(customer);
   try {
-    const res = await axios.post("http://localhost:5000/api/customers/add", body, config);
+    const res = await axios.post("https://sutygonbackend.herokuapp.com/api/customers/add", body, config);
 
     dispatch({
       type: CUSTOMER_SAVED,
@@ -41,7 +41,7 @@ export const addNewCustomer = (customer) => async (dispatch) => {
   export const getAllCustomers = () => async (dispatch) => {
     dispatch({ type: CUSTOMER_LOADING });
     try {
-      const res = await axios.get(`http://localhost:5000/api/customers`);
+      const res = await axios.get(`https://sutygonbackend.herokuapp.com/api/customers`);
   
       dispatch({
         type: GET_CUSTOMERS,
