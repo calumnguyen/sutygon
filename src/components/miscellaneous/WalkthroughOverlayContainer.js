@@ -9,7 +9,6 @@ function forced_reload(){
     function func_reload(){
       window.location.reload(true)
     }
-  
       window.func_reload()
     </script>
   
@@ -22,8 +21,6 @@ function WalkthroughOverlayContainer() {
   const setWalkthroughCompleted2 =()=> {
     document.cookie = "walkthrough=completed";
     $('.walkthrough-overlay-container').hide();
-
-
   }
 
   return (

@@ -32,10 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "netlify": "netlify",
-    "heroku-postbuild":"NPM_CONFIG_PRODUCTION=false npm install && npm run build"
-
-  },
+    "netlify": "netlify"  },
   "eslintConfig": {
     "extends": [
       "react-app",

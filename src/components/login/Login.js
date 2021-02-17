@@ -54,7 +54,7 @@ function Login() {
                   {/*<!-- Registration form container-->*/}
                   <form className="send_email_form form-container form-container-transparent form-container-white">
 
-                    <div className="form-desc" style={{color: 'white'}}>
+                    <div className="form-desc text-white" style={{color: 'white'}}>
                       <h2 className="display-4 display-title  anim-2">Đăng nhập</h2>
                       <p className="invite  anim-3">Đăng nhập ngay nào bạn ơi</p>
                     </div>
@@ -63,15 +63,15 @@ function Login() {
 
                       <div className="form-group form-success-gone">
                         <label htmlFor="login-number">10 Chữ Số Điện Thoại Của Bạn</label>
-                        <input id="login-num" name="number" className="form-control-line form-control-white"
+                        <input id="login-num" name="number" className="form-control-line form-control-white text-white"
                                type="number"
                                min="0"/>
                       </div>
 
                       <div className="form-group form-success-gone">
                         <label htmlFor="login-pasword">Nhập Mật Khẩu</label>
-                        <input id="login-pas" name="password" className="form-control-line form-control-white"
-                               type="text"/>
+                        <input id="login-pas" name="password" className="form-control-line form-control-white  text-white"
+                               type="password"/>
 
                         <label htmlFor="login-number">Quên mật khẩu? Đừng lo,<Link to={"setpass"}><u>nhấn đây</u></Link>
 

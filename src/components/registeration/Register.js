@@ -66,7 +66,7 @@ class Register extends React.Component {
   sendCodeRequest = async (e, number) => {
     e.preventDefault();
 
-    this.setState({sendingCode: true})
+    this.setState({ sendingCode: true });
     const phonenumber = number;
     //if phonenumber is empty, show error
     if (phonenumber == "") {
@@ -85,8 +85,7 @@ class Register extends React.Component {
         timeOut: 3000,
       });
     }
-    this.setState({sendingCode: false})
-
+    this.setState({ sendingCode: false });
   };
 
   //validate customer email. show error if same email already exist or format of email is not valid
@@ -152,7 +151,7 @@ class Register extends React.Component {
       company: state.company_name,
       company_address: state.company_address,
       online_account: m_oc,
-      password:state.password,
+      password: state.password,
       block_account: state.block_account === "" ? false : state.block_account,
     };
 
@@ -217,7 +216,7 @@ class Register extends React.Component {
                         this.sendCodeRequest(e, this.state.phonenumber)
                       }
                     >
-                      <div className="form-desc" style={{ color: "white" }}>
+                      <div className="form-desc  text-white">
                         <h2 className="display-4 display-title anim-2">
                           Register
                         </h2>
@@ -247,10 +246,9 @@ class Register extends React.Component {
                           </label>
                           <input
                             id="login-pas"
-                            style={{ color: "white" }}
                             onChange={(e) => this.handleChange(e)}
                             name="password"
-                            className="form-control-line form-control-white"
+                            className="form-control-line form-control-white text-white"
                             type="password"
                           />
                         </div>
@@ -307,7 +305,7 @@ class Register extends React.Component {
                   <div className="col-12 col-md-8 col-lg-6">
                     {/*<!-- Registration form container-->*/}
                     <form className="send_email_form form-container form-container-transparent form-container-white">
-                      <div className="form-desc" style={{ color: "white" }}>
+                      <div className="form-desc text-white">
                         <h2 className="display-6 display-title anim-2">
                           Personal Information
                         </h2>
@@ -325,16 +323,61 @@ class Register extends React.Component {
                           <input
                             id="fullname"
                             name="fullname"
-                            style={{ color: "white" }}
-                            className="form-control-line form-control-white"
+                            className="form-control-line form-control-white text-white"
                             type="text"
                             onChange={(e) => this.handleChange(e)}
                           />
                         </div>
+
+                        <button
+                          to="/register#personal-info-address"
+                          className="btn btn-white btn-round btn-full form-success-gone text-center px-1"
+                        >
+                          Scroll down to add more information
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/*<!-- End of section wrapper -->*/}
+          </div>
+          {/*<!-- End of personal info/name section -->*/}
+          {/*<!-- Begin of personal info/dob section -->*/}
+          <div
+            className="section section-register fp-auto-height-responsive "
+            data-section="personal-info-dob"
+          >
+            {/*<!-- Begin of section wrapper -->*/}
+            <div className="section-wrapper">
+              {/*<!-- title -->*/}
+              <div className="section-title text-center">
+                <h5 className="title-bg">Personal</h5>
+              </div>
+
+              {/*<!-- content -->*/}
+              <div className="section-content anim text-center">
+                <div className="row align-items-center justify-content-center">
+                  <div className="col-12 col-md-8 col-lg-6">
+                    {/*<!-- Registration form container-->*/}
+                    <form className="send_email_form form-container form-container-transparent form-container-white">
+                      <div className="form-desc text-white">
+                        <h2 className="display-6 display-title anim-2">
+                          Personal Information
+                        </h2>
+                        <p className="invite text-center anim-3">
+                          Provide your personal information to complete the
+                          account registration process.
+                        </p>
+                      </div>
+
+                      <div className="form-input  anim-4">
                         <div className="form-input anim">
                           <div className="form-group form-success-gone anim-3">
                             <label htmlFor="login-number">
-                              Sam Smith? Beautiful name! <b />
+                              {this.state.fullname ? this.state.fullname : ""} ?
+                              Beautiful name! <b />
                               What is your Date of Birth?
                             </label>
                             <DatePicker
@@ -352,21 +395,7 @@ class Register extends React.Component {
                             />
                           </div>
                         </div>
-                        <div className="form-input  anim-4">
-                          <div className="form-group form-success-gone">
-                            <label htmlFor="login-number">
-                              What is your address?{" "}
-                            </label>
-                            <input
-                              id="address"
-                              name="address"
-                              className="form-control-line form-control-white"
-                              type="text"
-                              style={{ color: "white" }}
-                              onChange={(e) => this.handleChange(e)}
-                            />
-                          </div>
-                        </div>
+
                         <button
                           to="/register#personal-info-address"
                           className="btn btn-white btn-round btn-full form-success-gone text-center px-1"
@@ -382,11 +411,68 @@ class Register extends React.Component {
             {/*<!-- End of section wrapper -->*/}
           </div>
           {/*<!-- End of personal info/name section -->*/}
+          {/*<!-- Begin of personal info/address section -->*/}
 
-          {/*<!-- Begin of personal info/addrss section -->*/}
           <div
             className="section section-register fp-auto-height-responsive "
             data-section="personal-info-address"
+          >
+            {/*<!-- Begin of section wrapper -->*/}
+            <div className="section-wrapper">
+              {/*<!-- title -->*/}
+              <div className="section-title text-center">
+                <h5 className="title-bg">Personal</h5>
+              </div>
+
+              {/*<!-- content -->*/}
+              <div className="section-content anim text-center">
+                <div className="row align-items-center justify-content-center">
+                  <div className="col-12 col-md-8 col-lg-6">
+                    {/*<!-- Registration form container-->*/}
+                    <form className="send_email_form form-container form-container-transparent form-container-white">
+                      <div className="form-desc text-white">
+                        <h2 className="display-6 display-title anim-2">
+                          Personal Information
+                        </h2>
+                        <p className="invite text-center anim-3">
+                          Provide your personal information to complete the
+                          account registration process.
+                        </p>
+                      </div>
+                      <div className="form-input anim-4">
+                        <div className="form-group form-success-gone">
+                          <label htmlFor="login-number">
+                            What is your address?{" "}
+                          </label>
+                          <input
+                            id="address"
+                            name="address"
+                            className="form-control-line form-control-white text-white"
+                            type="text"
+                            onChange={(e) => this.handleChange(e)}
+                          />
+                        </div>
+                      </div>
+
+                      <button
+                        to="/register#personal-info-address"
+                        className="btn btn-white btn-round btn-full form-success-gone text-center px-1"
+                      >
+                        Scroll down to add more information
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/*<!-- End of section wrapper -->*/}
+          </div>
+          {/*<!-- End of personal info/adress section -->*/}
+
+          {/*<!-- Begin of other info section -->*/}
+          <div
+            className="section section-register fp-auto-height-responsive "
+            data-section="other-info"
           >
             {/*<!-- Begin of section wrapper -->*/}
             <div className="section-wrapper">
@@ -417,8 +503,7 @@ class Register extends React.Component {
                           <input
                             id="email"
                             name="email"
-                            style={{ color: "white" }}
-                            className="form-control-line form-control-white"
+                            className="form-control-line form-control-white text-white"
                             onChange={(e) => this.handleChange(e)}
                             type="email"
                             onBlur={(e) => this.validateCustomerEmail(e)}
@@ -430,9 +515,8 @@ class Register extends React.Component {
                           </label>
                           <input
                             id="company_name"
-                            style={{ color: "white" }}
                             name="company_name"
-                            className="form-control-line form-control-white"
+                            className="form-control-line form-control-white text-white"
                             onChange={(e) => this.handleChange(e)}
                             type="text"
                           />
@@ -443,10 +527,9 @@ class Register extends React.Component {
                           </label>
                           <input
                             id="company-address"
-                            style={{ color: "white" }}
                             name="company-address"
                             onChange={(e) => this.handleChange(e)}
-                            className="form-control-line form-control-white"
+                            className="form-control-line form-control-white text-white"
                             type="text"
                           />
                         </div>
