@@ -14,7 +14,10 @@ import {
   LOGIN_FAIL,
 } from "./type";
 
-const BASE_URL = "https://sutygonbackend.herokuapp.com";
+const BASE_URL =
+  process.env.NODE_ENV == "production"
+    ? "https://sutygonbackend.herokuapp.com"
+    : "http://localhost:5000";
 export const login = (username, password) => async (dispatch) => {
   dispatch({
     type: LOGIN_LOADING,
