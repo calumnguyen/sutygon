@@ -1,32 +1,33 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Link} from 'react-router-dom'
-import $ from 'jquery';
-
+import $ from 'jquery'
 {/*problem*/}
 function forced_reload(){
   setTimeout(() => {
     <script type={"text/javascript"}>
     function func_reload(){
       window.location.reload(true)
+      
     }
-      window.func_reload()
+      window.func_reload();
+      
     </script>
-  
-  },500)
+   },500)
   
 }
 
 function WalkthroughOverlayContainer() {
-
-  const setWalkthroughCompleted2 =()=> {
-    document.cookie = "walkthrough=completed";
-    $('.walkthrough-overlay-container').hide();
+const [show, sethide] = useState(true);
+  const setWalkthroughCompleted2 =(e)=> {
+    e.preventDefault();
+    sethide(false);
+    setTimeout(function(){
+      $('#page-loader').addClass('p-hidden');
+    }, 800);
   }
-
   return (
-
-    <div>
-
+    <>
+    {show &&
       <div className="walkthrough-overlay-container">
 
         <div className="menu-cont">
@@ -48,14 +49,11 @@ function WalkthroughOverlayContainer() {
           <p className="center-vh animate__animated animate__backInRight">Bấm vào nút 3-gạch này để xem điểm thưởng, đơn
             hàng, thông tin cửa hàng và TEAM SUTYGON nhé bạn!</p>
           <div className="center-vh">
-            <Link to={"#"} onClick={()=> {setWalkthroughCompleted2();forced_reload()}} className={"btn bttn-succes"}>Ok</Link>
+            <Link to={"/home"} onClick={(e)=>setWalkthroughCompleted2(e)} className={"btn bttn-succes"}>Ok</Link>
           </div>
         </div>
       </div>
-
-
-    </div>
-
+      }</>
   )
 }
 

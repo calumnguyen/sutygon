@@ -1,12 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-// import FooterComponent from "../footer/FooterComponent";
 import HeaderComponentLogin from "../header/HeaderComponentLogin";
 import PageLoader from "../miscellaneous/PageLoader";
 import {
   addNewCustomer,
   sendCodeRequest,
   getAllCustomers,
+  getCustomer,updateCustomer
 } from "../../actions/customer";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -36,6 +36,7 @@ class Register extends React.Component {
     password: "",
     code: "",
     customerEmailArray: "",
+    isUpdate:false,
     saving: false,
     sendingCode: false,
   };
@@ -53,7 +54,7 @@ class Register extends React.Component {
     const { customer } = this.props;
     if (customer) {
       //filter email from all customers.
-      customer.filter((customer) => {
+      customer && customer.filter((customer) => {
         emails.push(customer.email);
       });
     }
@@ -70,7 +71,7 @@ class Register extends React.Component {
     const phonenumber = number;
     //if phonenumber is empty, show error
     if (phonenumber == "") {
-      OCAlert.alertSuccess("Please enter phone number", { timeOut: 3000 });
+      OCAlert.alertError("Please enter phone number", { timeOut: 3000 });
     }
     //api request for sending code
     await this.props.sendCodeRequest(phonenumber);
@@ -85,9 +86,64 @@ class Register extends React.Component {
         timeOut: 3000,
       });
     }
-    this.setState({ sendingCode: false });
+    await this.props.getCustomer(phonenumber);
+    const { isCustomerExist } = this.props;
+    this.setState({ sendingCode: false, isCustomerExist: isCustomerExist });
+    if (isCustomerExist == true) {
+      this.getExistingCustomerDetails();
+    }
   };
 
+  UpdateCustomer = async(e) =>{
+    e.preventDefault();
+    this.setState({ saving: true });
+    const state = { ...this.state };
+    //modifying online account details
+    let m_oc = {
+      exist: "yes",
+      membership: this.state.membership === "" ? null : this.state.membership,
+      username: this.state.fullname,
+      email: "unverified",
+      deactivate: false,
+    };
+    var customerData = {
+      name: state.fullname,
+      email: state.email,
+      contactnumber: state.phonenumber,
+      address: state.address,
+      birthday: moment(state.birthday),
+      company: state.company_name,
+      company_address: state.company_address,
+      online_account: m_oc,
+      password: state.password,
+      block_account: state.block_account === "" ? false : state.block_account,
+    };
+
+    //api action call for updating customer
+    await this.props.updateCustomer(customerData,state.id);
+
+    if (this.props.saved == true) {
+      OCAlert.alertSuccess("Account details updated successfully", {
+        timeOut: 3000,
+      });
+  }
+}
+  getExistingCustomerDetails = () => {
+    const { customer } = this.props;
+    if(customer){
+    this.setState({
+      id:customer._id,
+      fullname: customer.name,
+      address: customer.address,
+      birthday: customer.birthday && moment(customer.birthday).format('DD/MM/YYYY'),
+      email: customer.email,
+      company_name: customer.company,
+      company_address: customer.company_address,
+      phonenumber: customer.phonenumber,
+      isUpdate:true
+    })
+  }
+  }
   //validate customer email. show error if same email already exist or format of email is not valid
   validateCustomerEmail = (e) => {
     const { customerEmailArray } = this.state;
@@ -130,7 +186,7 @@ class Register extends React.Component {
   };
 
   //add customer
-  onSubmit = async (e) => {
+  SaveCustomer = async (e) => {
     e.preventDefault();
     this.setState({ saving: true });
     const state = { ...this.state };
@@ -155,7 +211,7 @@ class Register extends React.Component {
       block_account: state.block_account === "" ? false : state.block_account,
     };
 
-    //api action call
+    //api action call for adding new customer
     await this.props.addNewCustomer(customerData);
 
     if (this.props.saved == true) {
@@ -166,7 +222,9 @@ class Register extends React.Component {
     }
   };
 
+
   render() {
+  const {fullname,birthday,address,company_name, email,company_address,phonenumber} = this.state;
     return (
       <div>
         <Helmet>
@@ -188,6 +246,7 @@ class Register extends React.Component {
           ></div>
         </div>
         <div id="myApp">
+    
           <OCAlertsProvider />
         </div>
         {/*<!--END OF page cover -->*/}
@@ -260,13 +319,13 @@ class Register extends React.Component {
                             Sending...
                           </button>
                         ) : (
-                          <button
-                            className="btn btn-white btn-round btn-full form-success-gone"
-                            type="submit"
-                          >
-                            Send Verification Code
-                          </button>
-                        )}
+                            <button
+                              className="btn btn-white btn-round btn-full form-success-gone"
+                              type="submit"
+                            >
+                              Send Verification Code
+                            </button>
+                          )}
                       </div>
                     </form>
                   </div>
@@ -283,7 +342,7 @@ class Register extends React.Component {
             className="section section-register fp-auto-height-responsive "
             data-section="verification"
           >
-            <VerifyCode phonenumber={this.state.phonenumber} />
+            <VerifyCode phonenumber={phonenumber} />
           </div>
           {/*<!-- End of verification section -->*/}
 
@@ -325,6 +384,7 @@ class Register extends React.Component {
                             name="fullname"
                             className="form-control-line form-control-white text-white"
                             type="text"
+                            value={fullname}
                             onChange={(e) => this.handleChange(e)}
                           />
                         </div>
@@ -376,14 +436,21 @@ class Register extends React.Component {
                         <div className="form-input anim">
                           <div className="form-group form-success-gone anim-3">
                             <label htmlFor="login-number">
-                              {this.state.fullname ? this.state.fullname : ""} ?
+                              {fullname ? fullname : ""} ?
                               Beautiful name! <b />
                               What is your Date of Birth?
                             </label>
+                           {this.state.isUpdate ?
+                             <input
+                             value={this.state.birthday}
+                             className='form-control border-primary'
+                             readOnly
+                           />
+                           :
                             <DatePicker
                               dateFormat="dd/MM/yyyy"
                               locale="vi"
-                              selected={this.state.birthday}
+                              selected={birthday}
                               className="form-control"
                               onChange={(e) =>
                                 this.handleChangeForDate(e, "birthday")
@@ -392,7 +459,7 @@ class Register extends React.Component {
                               showMonthDropdown
                               showYearDropdown
                               dropdownMode="select"
-                            />
+                            />}
                           </div>
                         </div>
 
@@ -450,6 +517,7 @@ class Register extends React.Component {
                             className="form-control-line form-control-white text-white"
                             type="text"
                             onChange={(e) => this.handleChange(e)}
+                            value={address}
                           />
                         </div>
                       </div>
@@ -507,6 +575,7 @@ class Register extends React.Component {
                             onChange={(e) => this.handleChange(e)}
                             type="email"
                             onBlur={(e) => this.validateCustomerEmail(e)}
+                            value={email}
                           />
                         </div>
                         <div className="form-group form-success-gone">
@@ -519,6 +588,7 @@ class Register extends React.Component {
                             className="form-control-line form-control-white text-white"
                             onChange={(e) => this.handleChange(e)}
                             type="text"
+                            value={company_name}
                           />
                         </div>{" "}
                         <div className="form-group form-success-gone">
@@ -527,46 +597,51 @@ class Register extends React.Component {
                           </label>
                           <input
                             id="company-address"
-                            name="company-address"
+                            name="company_address"
                             onChange={(e) => this.handleChange(e)}
                             className="form-control-line form-control-white text-white"
                             type="text"
+                            value={company_address}
                           />
                         </div>
-                        {this.props.isCodeVerified == true ? (
-                          <>
-                            {this.state.saving ? (
-                              <button
-                                type="submit"
-                                className="btn btn-white btn-round form-success-gone btn-full text-center "
-                              >
-                                <div
-                                  className="mr-2 spinner-grow spinner-grow-sm  text-light"
-                                  role="status"
-                                ></div>{" "}
-                                &nbsp; Saving...{" "}
-                              </button>
-                            ) : (
-                              <button
-                                id="submit-num"
-                                className="btn btn-white btn-round form-success-gone btn-full"
-                                name="submit_num"
-                                onClick={(e) => this.onSubmit(e)}
-                              >
-                                Sign Up for fun
-                              </button>
-                            )}{" "}
-                          </>
-                        ) : (
-                          <button
-                            id="submit-num"
-                            className="btn btn-white btn-round form-success-gone btn-full disabled"
-                            name="submit_num"
-                            onClick={(e) => this.showVerificationError(e)}
-                          >
-                            Sign Up for fun
-                          </button>
-                        )}
+                  {/*checks if phone number is verified */}
+                  {this.props.isCodeVerified ? 
+                  <> 
+                  {/* checks if customer exists then the button will update the customer */}
+                  {this.state.isUpdate ? 
+                  // if customer exists then update customer
+                    <button
+                    id="submit-num"
+                    className="btn btn-white btn-round form-success-gone btn-full"
+                    name="submit_num"
+                    onClick={(e) => this.UpdateCustomer(e)}
+                  >
+                    Sign Up for fun
+                  </button>
+                  :
+                  // if customer does not exists then save customer
+                  <button
+                  id="submit-num"
+                  className="btn btn-white btn-round form-success-gone btn-full"
+                  name="submit_num"
+                  onClick={(e) => this.SaveCustomer(e)}
+                >
+                  Sign Up for fun
+                </button>
+                }
+                  </>
+                   : (
+                    //if customer does not verified number then show disabled button 
+                    <button
+                      id="submit-num"
+                      className="btn btn-white btn-round form-success-gone btn-full disabled"
+                      name="submit_num"
+                      onClick={(e) => this.showVerificationError(e)}
+                    >
+                      Sign Up for fun
+                    </button>
+                  )}
+                   
                       </div>{" "}
                     </form>
                   </div>
@@ -592,12 +667,16 @@ Register.propTypes = {
 
 const mapStateToProps = (state) => ({
   saved: state.customer.saved,
-  customer: state.customer.customers,
+  customers: state.customer.customers,
+  customer: state.customer.customer,
   isReqSent: state.customer.isReqSent,
   isCodeVerified: state.customer.isCodeVerified,
+  isCustomerExist: state.customer.isCustomerExist,
+  customer_number: state.customer.customer_number,
 });
 export default connect(mapStateToProps, {
   addNewCustomer,
   getAllCustomers,
   sendCodeRequest,
+  getCustomer,updateCustomer
 })(Register);
