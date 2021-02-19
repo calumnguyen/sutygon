@@ -2,8 +2,11 @@ const express = require("express");
 const path = require("path");
 const port = process.env.PORT || 4000;
 const app = express();
+const dotenv = require('dotenv')
 
 app.use(express.static(__dirname));
+
+dotenv.config({ path: "./config.env" });
 
 app.use(express.static(path.join(__dirname, "build")));
 // Load env vars
