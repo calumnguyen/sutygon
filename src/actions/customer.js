@@ -16,7 +16,7 @@ import {
 
 const BASE_URL =
   process.env.NODE_ENV == "production"
-    ? "https://sutygonbackend.herokuapp.com"
+    ? process.env.BUILD_URL
     : "http://localhost:5000";
 export const login = (username, password) => async (dispatch) => {
   dispatch({
