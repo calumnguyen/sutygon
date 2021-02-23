@@ -111,7 +111,8 @@ contact:''
         timeOut: 3000,
       });
     }
-    await this.props.getCustomer(phonenumber);
+    const phone = this.state.phonenumber;
+    await this.props.getCustomer(phone);
     const { isCustomerExist } = this.props;
     this.setState({ sendingCode: false, isCustomerExist: isCustomerExist });
     if (isCustomerExist == true) {
