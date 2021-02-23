@@ -64,12 +64,8 @@ contact:''
         this.setState({ phonenumber: "", contact:"" });
         OCAlert.alertError("Phone number must start from 0",{  timeOut: 3000});
       }
-      else if(code === "US" && res != "1"){
-        this.setState({ phonenumber: "", contact:"" });
-        OCAlert.alertError("Phone number must start from 1",{  timeOut: 3000});
-      }
-      else if(code === "US" && res == "1"){
-        this.setState({ phonenumber: "1" + num, contact: "+1" + num });
+      else if(code === "US"){
+        this.setState({ phonenumber: phonenumber, contact: "+1" + phonenumber });
       }
     }
   };
@@ -382,6 +378,7 @@ contact:''
                                 onChange={(e) => this.handleValidation(e)}
                                 className="form-control-line form-control-white text-white"
                                 onBlur={(e) => this.toNumber(e)}
+                                maxlength={11}
                               />
                             </div>
                           </div>
