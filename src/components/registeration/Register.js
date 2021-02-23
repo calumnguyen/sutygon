@@ -335,7 +335,7 @@ contact:''
                     <form
                       className="send_email_form form-container form-container-transparent form-container-white"
                       onSubmit={(e) =>
-                        this.sendCodeRequest(e, this.state.phonenumber)
+                        this.sendCodeRequest(e, this.state.contact)
                       }
                     >
                       <div className="form-desc  text-white">
