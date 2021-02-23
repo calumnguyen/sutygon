@@ -2,6 +2,7 @@ import React from "react";
 import { verifyCode, sendCodeRequest } from "../../actions/customer";
 import { connect } from "react-redux";
 import { OCAlert } from "@opuscapita/react-alerts";
+import InputOtp from '@onefifteen-z/react-input-otp';
 
 class VerifyCode extends React.Component {
   state = {
@@ -9,6 +10,7 @@ class VerifyCode extends React.Component {
     resendingCode: false,
     verifying: false,
     code: "",
+    otpCode:'',
   };
 
   sendCodeRequest = async (e) => {
@@ -31,9 +33,9 @@ class VerifyCode extends React.Component {
   verifyCode = async (e) => {
     e.preventDefault();
     this.setState({ verifying: true });
-    const { code } = this.state;
+    const { otpCode } = this.state;
     const { customer_number } = this.props;
-    await this.props.verifyCode(code, customer_number);
+    await this.props.verifyCode(otpCode, customer_number);
     const { isCodeVerified } = this.props;
     setTimeout(function () {
       if (isCodeVerified == true) {
@@ -56,6 +58,9 @@ class VerifyCode extends React.Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
+  };
+  handleChange = otpCode => {
+    this.setState({ otpCode });
   };
 
   render() {
@@ -84,15 +89,19 @@ class VerifyCode extends React.Component {
 
                 <div className="form-input  anim-4">
                   <div className="form-group form-success-gone">
-                    <input
-                      id="verify-number"
-                      name="code"
-                      className="form-control-line form-control-white text-white text-center"
-                      type="number"
-                      onChange={(e) => this.handleChange(e)}
-                      min="0"
-                      max="6"
-                    />
+                    <div className="col-md-12 text-center"> 
+                  <InputOtp 
+                  numberOnly={true}
+                  autoFocus={true}
+                  onChange={this.handleChange} 
+                  style={{marginLeft:"76px" }}
+                  className="form-control-line form-control-white text-white text-center"
+                  id="verify-number"
+                  name="code"
+
+
+                   /></div>
+
                   </div>
                   <div className="">
                     {this.state.verifying == true ? (

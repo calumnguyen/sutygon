@@ -14,18 +14,14 @@ import { connect } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as moment from "moment";
-// import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
 import { OCAlert } from "@opuscapita/react-alerts";
 import { OCAlertsProvider } from "@opuscapita/react-alerts";
 import VerifyCode from "./VerifyCode";
-import "react-phone-number-input/style.css";
 import ReactFlagsSelect from "react-flags-select";
 import "react-country-dropdown/dist/index.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import { vi } from "date-fns/esm/locale";
 import scrollToComponent from 'react-scroll-to-component';
-
 
 registerLocale("vi", vi);
 setDefaultLocale("vi");
