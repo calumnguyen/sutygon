@@ -32,17 +32,13 @@ function Home() {
 
       <div>
         <WalkthroughOverlayContainer/>
-
       </div>
 
 
       <div>
         <PageLoader/>
-
         {/*problem*/}
         <HeaderComponentHome/>
-
-
         <div className="page-cover">
           <div className="cover-bg bg-img" data-image-src="img/bg-default1.jpg"></div>
           <div className="cover-bg-mask bg-color" data-bgcolor="rgba(2, 3, 10, 0.7)"></div>

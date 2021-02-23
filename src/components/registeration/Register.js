@@ -6,20 +6,26 @@ import {
   addNewCustomer,
   sendCodeRequest,
   getAllCustomers,
-  getCustomer,updateCustomer
+  getCustomer,
+  updateCustomer,
 } from "../../actions/customer";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as moment from "moment";
-import PhoneInput from "react-phone-input-2";
+// import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { OCAlert } from "@opuscapita/react-alerts";
 import { OCAlertsProvider } from "@opuscapita/react-alerts";
 import VerifyCode from "./VerifyCode";
+import "react-phone-number-input/style.css";
+import ReactFlagsSelect from "react-flags-select";
+import "react-country-dropdown/dist/index.css";
 import { registerLocale, setDefaultLocale } from "react-datepicker";
 import { vi } from "date-fns/esm/locale";
+import scrollToComponent from 'react-scroll-to-component';
+
 
 registerLocale("vi", vi);
 setDefaultLocale("vi");
@@ -32,13 +38,14 @@ class Register extends React.Component {
     email: "",
     company_name: "",
     company_address: "",
-    phonenumber: "",
+    phonenumber: '',
     password: "",
-    code: "",
+    code: "VN",
     customerEmailArray: "",
-    isUpdate:false,
+    isUpdate: false,
     saving: false,
     sendingCode: false,
+contact:'' 
   };
 
   async componentDidMount() {
@@ -49,14 +56,40 @@ class Register extends React.Component {
     this.getEmailArray();
   }
 
+  toNumber = (e) => {
+    const {code,phonenumber} = this.state;
+    var num = phonenumber.slice(1);
+    var res = phonenumber.slice(0, 1);
+    if (phonenumber ) {
+      if(code === "VN" && res == "0"){
+        this.setState({ phonenumber: "VIE " + num, contact: "+84" + num });
+      }
+      else if(code === "VN" && res != "0"){
+        this.setState({ phonenumber: "", contact:"" });
+        OCAlert.alertError("Phone number must start from 0",{  timeOut: 3000});
+      }
+      else if(code === "US" && res != "1"){
+        this.setState({ phonenumber: "", contact:"" });
+        OCAlert.alertError("Phone number must start from 1",{  timeOut: 3000});
+      }
+      else if(code === "US" && res == "1"){
+        this.setState({ phonenumber: "ENG " + num, contact: "+1" + num });
+      }
+    }
+  };
+  handleValidation = (e) =>{
+    var number = e.target.value;
+   this.setState({phonenumber:number});
+  }
   getEmailArray() {
     let emails = [];
     const { customer } = this.props;
     if (customer) {
       //filter email from all customers.
-      customer && customer.filter((customer) => {
-        emails.push(customer.email);
-      });
+      customer &&
+        customer.filter((customer) => {
+          emails.push(customer.email);
+        });
     }
     this.setState({
       customerEmailArray: emails,
@@ -94,7 +127,7 @@ class Register extends React.Component {
     }
   };
 
-  UpdateCustomer = async(e) =>{
+  UpdateCustomer = async (e) => {
     e.preventDefault();
     this.setState({ saving: true });
     const state = { ...this.state };
@@ -120,30 +153,46 @@ class Register extends React.Component {
     };
 
     //api action call for updating customer
-    await this.props.updateCustomer(customerData,state.id);
+    await this.props.updateCustomer(customerData, state.id);
 
     if (this.props.saved == true) {
       OCAlert.alertSuccess("Account details updated successfully", {
         timeOut: 3000,
       });
-  }
-}
+      this.setState({
+        fullname: "",
+        address: "",
+        birthday: "",
+        email: "",
+        company_name: "",
+        company_address: "",
+        phonenumber: "",
+        password: "",
+        code: "",
+        customerEmailArray: "",
+        isUpdate: false,
+        saving: false,
+        sendingCode: false,
+      });
+    }
+  };
   getExistingCustomerDetails = () => {
     const { customer } = this.props;
-    if(customer){
-    this.setState({
-      id:customer._id,
-      fullname: customer.name,
-      address: customer.address,
-      birthday: customer.birthday && moment(customer.birthday).format('DD/MM/YYYY'),
-      email: customer.email,
-      company_name: customer.company,
-      company_address: customer.company_address,
-      phonenumber: customer.phonenumber,
-      isUpdate:true
-    })
-  }
-  }
+    if (customer) {
+      this.setState({
+        id: customer._id,
+        fullname: customer.name,
+        address: customer.address,
+        birthday:
+          customer.birthday && moment(customer.birthday).format("DD/MM/YYYY"),
+        email: customer.email,
+        company_name: customer.company,
+        company_address: customer.company_address,
+        phonenumber: customer.phonenumber,
+        isUpdate: true,
+      });
+    }
+  };
   //validate customer email. show error if same email already exist or format of email is not valid
   validateCustomerEmail = (e) => {
     const { customerEmailArray } = this.state;
@@ -218,13 +267,36 @@ class Register extends React.Component {
       OCAlert.alertSuccess("Account details saved successfully", {
         timeOut: 3000,
       });
-      this.setState({ saving: false });
+      this.setState({
+        fullname: "",
+        address: "",
+        birthday: "",
+        email: "",
+        company_name: "",
+        company_address: "",
+        phonenumber: "",
+        password: "",
+        code: "",
+        customerEmailArray: "",
+        isUpdate: false,
+        saving: false,
+        sendingCode: false,
+      });
     }
   };
 
-
   render() {
-  const {fullname,birthday,address,company_name, email,company_address,phonenumber} = this.state;
+    const {
+      fullname,
+      birthday,
+      address,
+      company_name,
+      email,
+      contact,
+      company_address,
+      phonenumber,
+    } = this.state;
+    
     return (
       <div>
         <Helmet>
@@ -246,7 +318,6 @@ class Register extends React.Component {
           ></div>
         </div>
         <div id="myApp">
-    
           <OCAlertsProvider />
         </div>
         {/*<!--END OF page cover -->*/}
@@ -289,14 +360,43 @@ class Register extends React.Component {
                           <label htmlFor="login-number">
                             Enter 10-digit phone number
                           </label>
-                          <PhoneInput
-                            country={"vn"}
-                            onlyCountries={["vn", "us"]}
-                            areaCodes={{ vn: ["84"], us: ["1"] }}
-                            onChange={(phonenumber) =>
-                              this.setState({ phonenumber })
-                            }
-                          />
+                          <div className="row">
+                            <div className="col-md-3 flag-dropdown">
+                              <ReactFlagsSelect
+                                selected={this.state.code}
+                                showSelectedLabel={false}
+                                showSecondarySelectedLabel={false}
+                                countries={["VN", "US"]}
+                                placeholder=""
+                                fullWidth={false}
+                                customLabels= {
+                                  {VN: { primary: "VIE", secondary: "+84" },
+                                  US: { primary: "US", secondary: "+1" },}
+                                }
+                                onSelect={(code) =>
+                                  this.setState({ code: code })
+                                }
+                              />
+                            </div>
+                         
+                            <div className="col-md-9">
+                              <input
+                                name={"phonenumber"}
+                                value={this.state.phonenumber}
+                                onChange={(e) => this.handleValidation(e)}
+                                className="form-control-line form-control-white text-white"
+                                onBlur={(e) => this.toNumber(e)}
+                              />
+                            </div>
+                          </div>
+                          {/* <PhoneInput
+      placeholder="Enter phone number"
+      international={false}
+      value={this.state.phonenumber}
+      countryCallingCodeEditable={false}
+      defaultCountry="VN"
+      onChange={phonenumber=>(this.toNumber(phonenumber))}
+      /> */}
                         </div>
 
                         <div className="form-group form-success-gone">
@@ -315,17 +415,19 @@ class Register extends React.Component {
                           <button
                             className="btn btn-white btn-round btn-full form-success-gone"
                             type="submit"
+
                           >
                             Sending...
                           </button>
                         ) : (
-                            <button
-                              className="btn btn-white btn-round btn-full form-success-gone"
-                              type="submit"
-                            >
-                              Send Verification Code
-                            </button>
-                          )}
+                          <button
+                            className="btn btn-white btn-round btn-full form-success-gone"
+                            type="submit"
+                            onClick={() => scrollToComponent(this.Blue, { offset: -200, align: 'middle', duration: 1500, ease:'inCirc'})}
+                          >
+                            Send Verification Code
+                          </button>
+                        )}
                       </div>
                     </form>
                   </div>
@@ -338,18 +440,19 @@ class Register extends React.Component {
 
           {/*<!-- Begin of verification section -->*/}
 
-          <div
+           <div
             className="section section-register fp-auto-height-responsive "
-            data-section="verification"
+            data-section="verification" ref={(section) => { this.Blue = section; }} 
           >
-            <VerifyCode phonenumber={phonenumber} />
-          </div>
-          {/*<!-- End of verification section -->*/}
 
+            <VerifyCode phonenumber={contact} />
+
+          </div>
+           {/*<!-- End of verification section -->*/}
           {/*<!-- Begin of personal info/name section -->*/}
           <div
             className="section section-register fp-auto-height-responsive "
-            data-section="personal-info-name"
+            data-section="personal-info-name" 
           >
             {/*<!-- Begin of section wrapper -->*/}
             <div className="section-wrapper">
@@ -359,6 +462,7 @@ class Register extends React.Component {
               </div>
 
               {/*<!-- content -->*/}
+
               <div className="section-content anim text-center">
                 <div className="row align-items-center justify-content-center">
                   <div className="col-12 col-md-8 col-lg-6">
@@ -436,30 +540,30 @@ class Register extends React.Component {
                         <div className="form-input anim">
                           <div className="form-group form-success-gone anim-3">
                             <label htmlFor="login-number">
-                              {fullname ? fullname : ""} ?
-                              Beautiful name! <b />
+                              {fullname ? fullname : ""} ? Beautiful name! <b />
                               What is your Date of Birth?
                             </label>
-                           {this.state.isUpdate ?
-                             <input
-                             value={this.state.birthday}
-                             className='form-control border-primary'
-                             readOnly
-                           />
-                           :
-                            <DatePicker
-                              dateFormat="dd/MM/yyyy"
-                              locale="vi"
-                              selected={birthday}
-                              className="form-control"
-                              onChange={(e) =>
-                                this.handleChangeForDate(e, "birthday")
-                              }
-                              popperPlacement="top-start"
-                              showMonthDropdown
-                              showYearDropdown
-                              dropdownMode="select"
-                            />}
+                            {this.state.isUpdate ? (
+                              <input
+                                value={this.state.birthday}
+                                className="form-control border-primary"
+                                readOnly
+                              />
+                            ) : (
+                              <DatePicker
+                                dateFormat="dd/MM/yyyy"
+                                locale="vi"
+                                selected={birthday}
+                                className="form-control"
+                                onChange={(e) =>
+                                  this.handleChangeForDate(e, "birthday")
+                                }
+                                popperPlacement="top-start"
+                                showMonthDropdown
+                                showYearDropdown
+                                dropdownMode="select"
+                              />
+                            )}
                           </div>
                         </div>
 
@@ -604,44 +708,43 @@ class Register extends React.Component {
                             value={company_address}
                           />
                         </div>
-                  {/*checks if phone number is verified */}
-                  {this.props.isCodeVerified ? 
-                  <> 
-                  {/* checks if customer exists then the button will update the customer */}
-                  {this.state.isUpdate ? 
-                  // if customer exists then update customer
-                    <button
-                    id="submit-num"
-                    className="btn btn-white btn-round form-success-gone btn-full"
-                    name="submit_num"
-                    onClick={(e) => this.UpdateCustomer(e)}
-                  >
-                    Sign Up for fun
-                  </button>
-                  :
-                  // if customer does not exists then save customer
-                  <button
-                  id="submit-num"
-                  className="btn btn-white btn-round form-success-gone btn-full"
-                  name="submit_num"
-                  onClick={(e) => this.SaveCustomer(e)}
-                >
-                  Sign Up for fun
-                </button>
-                }
-                  </>
-                   : (
-                    //if customer does not verified number then show disabled button 
-                    <button
-                      id="submit-num"
-                      className="btn btn-white btn-round form-success-gone btn-full disabled"
-                      name="submit_num"
-                      onClick={(e) => this.showVerificationError(e)}
-                    >
-                      Sign Up for fun
-                    </button>
-                  )}
-                   
+                        {/*checks if phone number is verified */}
+                        {this.props.isCodeVerified ? (
+                          <>
+                            {/* checks if customer exists then the button will update the customer */}
+                            {this.state.isUpdate ? (
+                              // if customer exists then update customer
+                              <button
+                                id="submit-num"
+                                className="btn btn-white btn-round form-success-gone btn-full"
+                                name="submit_num"
+                                onClick={(e) => this.UpdateCustomer(e)}
+                              >
+                                Sign Up for fun
+                              </button>
+                            ) : (
+                              // if customer does not exists then save customer
+                              <button
+                                id="submit-num"
+                                className="btn btn-white btn-round form-success-gone btn-full"
+                                name="submit_num"
+                                onClick={(e) => this.SaveCustomer(e)}
+                              >
+                                Sign Up for fun
+                              </button>
+                            )}
+                          </>
+                        ) : (
+                          //if customer does not verified number then show disabled button
+                          <button
+                            id="submit-num"
+                            className="btn btn-white btn-round form-success-gone btn-full disabled"
+                            name="submit_num"
+                            onClick={(e) => this.showVerificationError(e)}
+                          >
+                            Sign Up for fun
+                          </button>
+                        )}
                       </div>{" "}
                     </form>
                   </div>
@@ -678,5 +781,6 @@ export default connect(mapStateToProps, {
   addNewCustomer,
   getAllCustomers,
   sendCodeRequest,
-  getCustomer,updateCustomer
+  getCustomer,
+  updateCustomer,
 })(Register);
