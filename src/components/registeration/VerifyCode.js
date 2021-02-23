@@ -94,7 +94,7 @@ class VerifyCode extends React.Component {
                   numberOnly={true}
                   autoFocus={true}
                   onChange={this.handleChange} 
-                  style={{marginLeft:"76px" }}
+                  // style={{marginLeft:"px" }}
                   className="form-control-line form-control-white text-white text-center"
                   id="verify-number"
                   name="code"
