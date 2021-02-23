@@ -58,7 +58,7 @@ contact:''
     var res = phonenumber.slice(0, 1);
     if (phonenumber ) {
       if(code === "VN" && res == "0"){
-        this.setState({ phonenumber: "VIE " + num, contact: "+84" + num });
+        this.setState({ phonenumber: "0" + num, contact: "+84" + num });
       }
       else if(code === "VN" && res != "0"){
         this.setState({ phonenumber: "", contact:"" });
@@ -69,7 +69,7 @@ contact:''
         OCAlert.alertError("Phone number must start from 1",{  timeOut: 3000});
       }
       else if(code === "US" && res == "1"){
-        this.setState({ phonenumber: "ENG " + num, contact: "+1" + num });
+        this.setState({ phonenumber: "1" + num, contact: "+1" + num });
       }
     }
   };
