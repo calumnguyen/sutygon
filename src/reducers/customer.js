@@ -86,7 +86,7 @@ case CUSTOMER_FOUND:
       return {
         ...state,
         loading: false,
-        isCodeVerified: payload.valid,
+        isCodeVerified: payload && payload.valid,
         isReqSent: false,
       };
     case CODE_ERROR:

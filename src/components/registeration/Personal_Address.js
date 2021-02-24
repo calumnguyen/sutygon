@@ -1,35 +1,46 @@
 import React from "react";
-import { verifyCode, sendCodeRequest } from "../../actions/customer";
+import { getCustomer } from "../../actions/customer";
 import { connect } from "react-redux";
 import { OCAlert } from "@opuscapita/react-alerts";
-import InputOtp from "@onefifteen-z/react-input-otp";
 import { Helmet } from "react-helmet";
 import HeaderComponentLogin from "../header/HeaderComponentLogin";
 import PageLoader from "../miscellaneous/PageLoader";
 import { OCAlertsProvider } from "@opuscapita/react-alerts";
 import $ from "jquery";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as moment from "moment";
 
-class VerifyCode extends React.Component {
+class Personal_Address extends React.Component {
   state = {
-    phonenumber: "",
-    resendingCode: false,
-    verifying: false,
-    code: "",
-    otpCode: "",
+    address: "",
   };
 
-  componentDidMount() {
+async  componentDidMount() {
     this.forced_reload();
     setTimeout(function () {
       $("#page-loader").addClass("p-hidden");
     }, 100);
     if (this.props.location.state) {
-      const { contact ,phonenumber,password} = this.props.location.state;
-      this.setState({ contact: contact ,phonenumber:phonenumber,password:password });
+      const { state } = this.props.location;
+      this.setState({
+        fullname: state.fullname,
+        birthday: state.birthday,
+        contact: state.contact,
+        password: state.password,
+      });
+      await this.props.getCustomer(state.contact);
+      const { customer } = this.props;
+
+      if (customer) {
+        this.setState({
+          address: customer.address,
+          isUpdate:true,
+        });
+      }
     }
+    
   }
+
   forced_reload() {
     setTimeout(() => {
       if (window.localStorage) {
@@ -40,11 +51,28 @@ class VerifyCode extends React.Component {
       }
     }, 50);
   }
+  getExistingCustomerDetails = () => {
+    const { customer } = this.props;
+    if (customer) {
+      this.setState({
+        id: customer._id,
+        fullname: customer.name,
+        address: customer.address,
+        birthday:
+          customer.birthday && moment(customer.birthday).format("DD/MM/YYYY"),
+        email: customer.email,
+        company_name: customer.company,
+        company_address: customer.company_address,
+        phonenumber: customer.phonenumber,
+        isUpdate: true,
+      });
+    }
+  };
   sendCodeRequest = async (e) => {
     e.preventDefault();
-    const { contact } = this.state;
+    const { customer_number } = this.props;
     this.setState({ resendingCode: true });
-    await this.props.sendCodeRequest(contact);
+    await this.props.sendCodeRequest(customer_number);
     const { isReqSent } = this.props;
     if (isReqSent == "pending") {
       OCAlert.alertSuccess("Code sent to given phone number", {
@@ -61,8 +89,8 @@ class VerifyCode extends React.Component {
     e.preventDefault();
     this.setState({ verifying: true });
     const { otpCode } = this.state;
-    const { contact } = this.state;
-    await this.props.verifyCode(otpCode, contact);
+    const { customer_number } = this.props;
+    await this.props.verifyCode(otpCode, customer_number);
     const { isCodeVerified } = this.props;
     setTimeout(function () {
       if (isCodeVerified == true) {
@@ -86,26 +114,15 @@ class VerifyCode extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
-  handleChange = (otpCode) => {
-    this.setState({ otpCode });
-  };
+  showError = (e) =>{
+    e.preventDefault();
+    OCAlert.alertError("Please Enter your Full Address.", {
+      timeOut: 3000,
+    });
 
+  }
   render() {
-    const { isCodeVerified, isCustomerExist } = this.props;
-    if (isCodeVerified == true) {
-      OCAlert.alertSuccess("Phone Number Verified.", { timeOut: 3000 });
-        return (
-          <Redirect
-            exact
-            to={{
-              pathname: "/personalname",
-              state: { isCustomerExist: isCustomerExist,contact:this.state.contact ,phonenumber:this.state.phonenumber,password:this.state.password},
-              
-            }}
-          />
-        );  
-     
-    }
+    const { address } = this.state;
     return (
       <div>
         <Helmet>
@@ -136,11 +153,11 @@ class VerifyCode extends React.Component {
             className="section section-register fp-auto-height-responsive "
             data-section="register"
           >
-            {/*<!-- Begin of verification section -->*/}
+            {/*<!-- Begin of section wrapper -->*/}
             <div className="section-wrapper">
               {/*<!-- title -->*/}
               <div className="section-title text-center">
-                <h5 className="title-bg">Verify</h5>
+                <h5 className="title-bg">Personal</h5>
               </div>
 
               {/*<!-- content -->*/}
@@ -149,81 +166,57 @@ class VerifyCode extends React.Component {
                   <div className="col-12 col-md-8 col-lg-6">
                     {/*<!-- Registration form container-->*/}
                     <form className="send_email_form form-container form-container-transparent form-container-white">
-                      <div className="form-desc" style={{ color: "white" }}>
+                      <div className="form-desc text-white">
                         <h2 className="display-6 display-title anim-2">
-                          Verify Your Number
+                          Personal Information
                         </h2>
                         <p className="invite text-center anim-3">
-                          To ensure your privacy, we have sent you a code to the
-                          phone number you registered with. Please provide the
-                          code below.
+                          Provide your personal information to complete the
+                          account registration process.
                         </p>
                       </div>
-
-                      <div className="form-input  anim-4">
+                      <div className="form-input anim-4">
                         <div className="form-group form-success-gone">
-                          <div className="col-md-12 text-center">
-                            <InputOtp
-                              numberOnly={true}
-                              autoFocus={true}
-                              onChange={this.handleChange}
-                              className="form-control-line form-control-white text-white text-center"
-                              id="verify-number"
-                              name="code"
-                            />
-                          </div>
+                          <label htmlFor="login-number">
+                            What is your address?{" "}
+                          </label>
+                          <input
+                            id="address"
+                            name="address"
+                            className="form-control-line form-control-white text-white"
+                            type="text"
+                            onChange={(e) => this.handleChange(e)}
+                            value={address}
+                            required
+                          />
                         </div>
-                        <div className="">
-                          {this.state.verifying == true ? (
-                            <button
-                              id="submit-num"
-                              className="btn btn-white btn-round form-success-gone float-left"
-                              name="submit_num"
-                              onClick={(e) => this.verifyCode(e)}
-                            >
-                              Verifying...
-                            </button>
-                          ) : (
-                            <button
-                              id="submit-num"
-                              className="btn btn-white btn-round form-success-gone float-left"
-                              name="submit_num"
-                              onClick={(e) => this.verifyCode(e)}
-                            >
-                              Verify Code
-                            </button>
-                          )}
-                          {this.state.resendingCode ? (
-                            <button
-                              id="submit-num"
-                              className="btn btn-white btn-round form-success-gone float-right"
-                              name="submit_num"
-                            >
-                              Resending...
-                            </button>
-                          ) : (
-                            <button
-                              id="submit-num"
-                              className="btn btn-white btn-round form-success-gone float-right"
-                              name="submit_num"
-                              onClick={(e) =>
-                                this.sendCodeRequest(e, this.state.phonenumber)
-                              }
-                            >
-                              Resend Code
-                            </button>
-                          )}
-                        </div>{" "}
                       </div>
+                      {this.state.address != "" ? (
+                          <Link
+                          to={{
+                            pathname: `/otherinformation`,
+                            state: this.state,
+                          }}
+                            className="btn btn-white btn-round btn-full form-success-gone text-center px-1"
+                          >
+                            Next
+                          </Link>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={(e) =>this.showError(e)}
+                            className="btn btn-white btn-round btn-full form-success-gone text-center px-1 disabled"
+                          >
+                            Next
+                          </button>
+                        )}
+                    
                     </form>
-                    <div
-                      className=""
-                      style={{ height: "200px", display: "block" }}
-                    ></div>
                   </div>
                 </div>
               </div>
             </div>
+            {/*<!-- End of section wrapper -->*/}
           </div>{" "}
         </main>
       </div>
@@ -231,7 +224,7 @@ class VerifyCode extends React.Component {
   }
 }
 
-VerifyCode.propTypes = {};
+Personal_Address.propTypes = {};
 
 const mapStateToProps = (state) => ({
   saved: state.customer.saved,
@@ -243,6 +236,5 @@ const mapStateToProps = (state) => ({
   customer_number: state.customer.customer_number,
 });
 export default connect(mapStateToProps, {
-  verifyCode,
-  sendCodeRequest,
-})(VerifyCode);
+ getCustomer
+})(Personal_Address);
