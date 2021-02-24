@@ -271,7 +271,7 @@ class Register extends React.Component {
                           </button>
                         )}</> :
                         <button
-                        className="btn btn-white btn-round btn-full form-success-gone disabled"
+                        className="btn btn-white btn-round btn-full form-success-gone"
                         type="button"
                         onClick={(e) =>this.showError(e)}
 
