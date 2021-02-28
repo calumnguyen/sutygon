@@ -133,7 +133,12 @@ class Register extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
-
+  showError = (e) => {
+    e.preventDefault();
+    OCAlert.alertError("Please Add the required fields.", {
+      timeOut: 3000,
+    });
+  };
   render() {
     const { contact, password, phonenumber } = this.state;
     const { isCustomerExist, isReqSent, customer } = this.props;
@@ -288,16 +293,7 @@ class Register extends React.Component {
                           <button
                             className="btn btn-white btn-round btn-full form-success-gone"
                             type="button"
-                            // onClick={(e) => this.sendCodeRequest(e, contact)}
-                            // to={{
-                            //   pathname: `/VerifyCode`,
-                            //   state: {
-                            //     contact: contact,
-                            //     phonenumber: phonenumber,
-                            //     isCustomerExist: isCustomerExist,
-                            //     password: password,
-                            //   },
-                            // }}
+                           onClick={(e) =>showError(e)}
                           >
                             Send Verification Code
                           </button>
