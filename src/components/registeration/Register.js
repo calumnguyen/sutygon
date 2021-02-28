@@ -293,7 +293,7 @@ class Register extends React.Component {
                           <button
                             className="btn btn-white btn-round btn-full form-success-gone"
                             type="button"
-                           onClick={(e) =>showError(e)}
+                           onClick={(e) =>this.showError(e)}
                           >
                             Send Verification Code
                           </button>
