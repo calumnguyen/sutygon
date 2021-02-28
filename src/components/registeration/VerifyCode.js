@@ -9,8 +9,7 @@ import PageLoader from "../miscellaneous/PageLoader";
 import { OCAlertsProvider } from "@opuscapita/react-alerts";
 import $ from "jquery";
 import { Link, Redirect } from "react-router-dom";
-import * as moment from "moment";
-
+import "../../registeration.css";
 class VerifyCode extends React.Component {
   state = {
     phonenumber: "",
@@ -21,30 +20,48 @@ class VerifyCode extends React.Component {
   };
 
   componentDidMount() {
-    this.forced_reload();
     setTimeout(function () {
       $("#page-loader").addClass("p-hidden");
-    }, 100);
-    if (this.props.location.state) {
-      const { contact ,phonenumber,password} = this.props.location.state;
-      this.setState({ contact: contact ,phonenumber:phonenumber,password:password });
-    }
-  }
-  forced_reload() {
-    setTimeout(() => {
-      if (window.localStorage) {
-        if (!localStorage.getItem("firstLoad")) {
-          localStorage["firstLoad"] = true;
-          window.location.reload();
-        } else localStorage.removeItem("firstLoad");
+      var list = $(".bg-img");
+      for (var i = 0; i < $(".bg-img").length; i++) {
+        var src = $(".bg-img")[i].getAttribute("data-image-src");
+        $(".bg-img")[i].style.backgroundImage = "url('" + src + "')";
+        $(".bg-img")[i].style.backgroundRepeat = "no-repeat";
+        $(".bg-img")[i].style.backgroundPosition = "center";
+        $(".bg-img")[i].style.backgroundSize = "cover";
       }
-    }, 50);
+      var list = $(".bg-color");
+      for (var i = 0; i < $(".bg-color").length; i++) {
+        var src = $(".bg-color")[i].getAttribute("data-bgcolor");
+        $(".bg-color")[i].style.backgroundColor = src;
+      }
+      $(".section .content .anim.anim-wrapped").wrap(
+        "<span class='anim-wrapper'></span>"
+      );
+    }, 800);
+    if (this.props.location.state) {
+      const { isCustomerExist } = this.props.location.state;
+      if (isCustomerExist) {
+        const { customer, password, contactnumber } = this.props.location.state;
+        this.setState({
+          customer: customer,
+          contactnumber: contactnumber,
+          password: password,
+        });
+      } else {
+        const { password ,contactnumber} = this.props.location.state;
+        this.setState({
+          contactnumber: contactnumber,
+          password: password,
+        });
+      }
+    }
   }
   sendCodeRequest = async (e) => {
     e.preventDefault();
-    const { contact } = this.state;
+    const { contactnumber } = this.state;
     this.setState({ resendingCode: true });
-    await this.props.sendCodeRequest(contact);
+    await this.props.sendCodeRequest(contactnumber);
     const { isReqSent } = this.props;
     if (isReqSent == "pending") {
       OCAlert.alertSuccess("Code sent to given phone number", {
@@ -61,8 +78,8 @@ class VerifyCode extends React.Component {
     e.preventDefault();
     this.setState({ verifying: true });
     const { otpCode } = this.state;
-    const { contact } = this.state;
-    await this.props.verifyCode(otpCode, contact);
+    const { customer_number } = this.props;
+    await this.props.verifyCode(otpCode, customer_number);
     const { isCodeVerified } = this.props;
     setTimeout(function () {
       if (isCodeVerified == true) {
@@ -91,20 +108,35 @@ class VerifyCode extends React.Component {
   };
 
   render() {
-    const { isCodeVerified, isCustomerExist } = this.props;
-    if (isCodeVerified == true) {
-      OCAlert.alertSuccess("Phone Number Verified.", { timeOut: 3000 });
-        return (
-          <Redirect
-            exact
-            to={{
-              pathname: "/personalname",
-              state: { isCustomerExist: isCustomerExist,contact:this.state.contact ,phonenumber:this.state.phonenumber,password:this.state.password},
-              
-            }}
-          />
-        );  
-     
+    const { isCodeVerified, isCustomerExist,isReqSent } = this.props;
+  
+  if (isCodeVerified == true) {
+      return (
+        <Redirect
+          exact
+          to={{
+            pathname: "/personalname",
+            state: {
+              isCustomerExist: isCustomerExist,
+              customer: this.state.customer,
+              password: this.state.password,
+              contactnumber:this.state.contactnumber
+            },
+          }}
+        />
+      );
+    }
+   
+ else if (isReqSent !== "pending") {
+      return (
+        <Redirect
+          exact
+          to={{
+            pathname: "/register",
+           
+          }}
+        />
+      );
     }
     return (
       <div>
@@ -133,13 +165,13 @@ class VerifyCode extends React.Component {
         {/*<!-- BEGIN OF page main content -->*/}
         <main className="page-main page-fullpage main-anim" id="mainpage">
           <div
-            className="section section-register fp-auto-height-responsive "
+            className="section-register section-register_custom fp-auto-height-responsive custom_register"
             data-section="register"
           >
             {/*<!-- Begin of verification section -->*/}
             <div className="section-wrapper">
               {/*<!-- title -->*/}
-              <div className="section-title text-center">
+              <div className="section-title section-title_custom text-center">
                 <h5 className="title-bg">Verify</h5>
               </div>
 
@@ -159,21 +191,20 @@ class VerifyCode extends React.Component {
                           code below.
                         </p>
                       </div>
-
-                      <div className="form-input  anim-4">
+                      <div className="form-input anim-4">
                         <div className="form-group form-success-gone">
-                          <div className="col-md-12 text-center">
+                          <div className="col-lg-12 col-md-12 custom_otp">
                             <InputOtp
                               numberOnly={true}
                               autoFocus={true}
                               onChange={this.handleChange}
-                              className="form-control-line form-control-white text-white text-center"
+                              className="form-control-line form-control-white text-white text-center custom_otp_input"
                               id="verify-number"
                               name="code"
                             />
                           </div>
                         </div>
-                        <div className="">
+                        <div className="custom_btn">
                           {this.state.verifying == true ? (
                             <button
                               id="submit-num"
@@ -204,7 +235,7 @@ class VerifyCode extends React.Component {
                           ) : (
                             <button
                               id="submit-num"
-                              className="btn btn-white btn-round form-success-gone float-right"
+                              className="btn btn-white btn-round form-success-gone float-right custom"
                               name="submit_num"
                               onClick={(e) =>
                                 this.sendCodeRequest(e, this.state.phonenumber)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import NavbarTopmenu from "../miscellaneous/NavbarTopmenu";
 import NavbarSidebar from "../miscellaneous/NavbarSidebar";
 import NavbarMainmenu from "../miscellaneous/NavbarMainmenu";
@@ -6,7 +6,13 @@ import {Link} from "react-router-dom";
 
 {/*problem*/}
 function HeaderComponentLogin() {
-
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'assets/js/main.js';
+    script.type = 'type/javascript';
+    script.async = true;
+    document.body.appendChild(script);
+  });
   return (
 
     <div>

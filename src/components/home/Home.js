@@ -6,6 +6,8 @@ import PageLoader from "../miscellaneous/PageLoader";
 import HeaderComponentHome from "../header/HeaderComponentHome";
 import {Link} from 'react-router-dom'
 
+
+
 function forced_reload(){
   setTimeout(() => {
     <script type={"text/javascript"}>
@@ -16,7 +18,7 @@ function forced_reload(){
       window.func_reload()
     </script>
   
-  },100)
+  },500)
   
 }
 function Home() {
@@ -62,7 +64,7 @@ function Home() {
 
 
                     <div className="btns-action anim-3">
-                      <Link to={"login"} className={"btn btn-outline-white btn-round"} onClick={forced_reload}>
+                      <Link to={"login"} onClick={forced_reload} className={"btn btn-outline-white btn-round"} >
                         Đăng nhập
                       </Link>
                     </div>
@@ -314,7 +316,7 @@ function Home() {
                                  type="number" min="0"
                           />
                         </div> */}
-                        <Link to="/register" id="submit-num" onClick={forced_reload}
+                        <Link to="/register" id="submit-num"
                                 className="btn btn-white btn-round btn-full form-success-gone text-center px-1"
                                 name="submit_num">Click here to get yourself registered
                         </Link>

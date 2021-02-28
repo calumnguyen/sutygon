@@ -26,30 +26,30 @@ $(document).on('ready', function () {
 			console[method] = noop;
 		}
 	}
-
+	
 	// 1. Background image as data attribut
 	var list = $('.bg-img');
-	for (var i = 0; i < list.length; i++) {
-		var src = list[i].getAttribute('data-image-src');
-		list[i].style.backgroundImage = "url('" + src + "')";
-		list[i].style.backgroundRepeat = "no-repeat";
-		list[i].style.backgroundPosition = "center";
-		list[i].style.backgroundSize = "cover";
+	for (var i = 0; i < $('.bg-img').length; i++) {
+		var src = $('.bg-img')[i].getAttribute('data-image-src');
+		$('.bg-img')[i].style.backgroundImage = "url('" + src + "')";
+		$('.bg-img')[i].style.backgroundRepeat = "no-repeat";
+		$('.bg-img')[i].style.backgroundPosition = "center";
+		$('.bg-img')[i].style.backgroundSize = "cover";
 	}
 	// Background color as data attribut
 	var list = $('.bg-color');
-	for (var i = 0; i < list.length; i++) {
-		var src = list[i].getAttribute('data-bgcolor');
-		list[i].style.backgroundColor = src;
+	for (var i = 0; i < $('.bg-color').length; i++) {
+		var src = $('.bg-color')[i].getAttribute('data-bgcolor');
+		$('.bg-color')[i].style.backgroundColor = src;
 	}
-
+	// }
 	
 
 	// 3. Show/hide menu when icon is clicked
 	var menuItems = $('.all-menu-wrapper .nav-link');
 	var menuIcon = $('.menu-icon, #navMenuIcon');
 	var menuBlock = $('.all-menu-wrapper');
-	var reactToMenu = $ ('.page-main, .navbar-sidebar, .page-cover')
+	var reactToMenu = $ ('.page-main, .navbar-sidebar')
 	var menuLinks = $(".navbar-mainmenu a, .navbar-sidebar a");
 	// Menu icon clicked
 	menuIcon.on('click', function () {
@@ -173,7 +173,7 @@ $(document).on('ready', function () {
 					click: true,
 					submit: true,
 				},
-				normalScrollElements: '.section .scrollable',
+				normalScrollElements: ' .scrollable',
 				afterRender: function () {
 					// Fix video background
 					videoBg.maximage('maxcover');
@@ -190,26 +190,6 @@ $(document).on('ready', function () {
 							}
 						}
 					}
-
-					// init contact form
-					// Default server url
-					var newsletterServerUrl = './ajaxserver/serverfile.php';
-					var messageServerUrl = './ajaxserver/serverfile.php';
-
-					// Use form define action attribute
-					if (sendEmailForm.attr('action') && (sendEmailForm.attr('action')) != '') {
-						newsletterServerUrl = sendEmailForm.attr('action');
-					}
-					if (sendMessageForm.attr('action') && (sendMessageForm.attr('action') != '')) {
-						messageServerUrl = sendMessageForm.attr('action');
-					}
-
-					sendEmailForm.initForm({
-						serverUrl: newsletterServerUrl,
-					});
-					sendMessageForm.initForm({
-						serverUrl: messageServerUrl,
-					});
 
 				},
 				afterResize: function () {
@@ -236,8 +216,9 @@ $(document).on('ready', function () {
 
 		}
 	});
+
 	// Scroll to fullPage.js next/previous section
-	$('.scrolldown a, .scroll.down').on('click', function () {
+	$(document).on('click','.scrolldown a, .scroll.down', function () {
 		try {
 			// fullpage scroll
 			$.fn.fullpage.moveSectionDown();
@@ -253,7 +234,7 @@ $(document).on('ready', function () {
 
 	// 8. Hide some ui on scroll
 	var scrollHeight = $(document).height() - contextWindow.height();
-	contextWindow.on('scroll', function () {
+	$(window).on('scroll', function () {
 		var scrollpos = $(this).scrollTop();
 		var siteHeaderFooter = $('.page-footer, .page-header');
 
@@ -268,7 +249,7 @@ $(document).on('ready', function () {
 
 
 	// 9. Page Loader : hide loader when all are loaded
-	contextWindow.on('load', function () {
+	$(window).on('load', function () {
 
 		$('.section').addClass('anim');
 	});
@@ -290,6 +271,7 @@ $(document).on('ready', function () {
 		$('.walkthrough-overlay-container').hide();
 	}
 });
+
 
 function getCookie(cname) {
   var name = cname + "=";

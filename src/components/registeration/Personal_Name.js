@@ -7,7 +7,7 @@ import PageLoader from "../miscellaneous/PageLoader";
 import { OCAlertsProvider } from "@opuscapita/react-alerts";
 import $ from "jquery";
 import { OCAlert } from "@opuscapita/react-alerts";
-import { Link} from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
 class Personal_Name extends React.Component {
   state = {
     fullname: "",
@@ -15,51 +15,72 @@ class Personal_Name extends React.Component {
   };
 
   async componentDidMount() {
-    this.forced_reload();
     setTimeout(function () {
       $("#page-loader").addClass("p-hidden");
-    }, 100);
-    if (this.props.location.state) {
-      const { contact, phonenumber, password } = this.props.location.state;
-      this.setState({ contact: phonenumber, password: password });
-      await this.props.getCustomer(phonenumber);
-      const { customer } = this.props;
+      var list = $(".bg-img");
+      for (var i = 0; i < $(".bg-img").length; i++) {
+        var src = $(".bg-img")[i].getAttribute("data-image-src");
+        $(".bg-img")[i].style.backgroundImage = "url('" + src + "')";
+        $(".bg-img")[i].style.backgroundRepeat = "no-repeat";
+        $(".bg-img")[i].style.backgroundPosition = "center";
+        $(".bg-img")[i].style.backgroundSize = "cover";
+      }
+      var list = $(".bg-color");
+      for (var i = 0; i < $(".bg-color").length; i++) {
+        var src = $(".bg-color")[i].getAttribute("data-bgcolor");
+        $(".bg-color")[i].style.backgroundColor = src;
+      }
+      $(".section .content .anim.anim-wrapped").wrap(
+        "<span class='anim-wrapper'></span>"
+      );
+    }, 800);
 
-      if (customer) {
+    if (this.props.location.state) {
+      const {
+        password,
+        contactnumber,
+        isCustomerExist,
+        fullname,
+      } = this.props.location.state;
+      if (isCustomerExist) {
+        await this.props.getCustomer(contactnumber);
+        const { customer } = this.props;
+        if (customer) {
+          this.setState({
+            fullname: customer.name,
+            isUpdate: true,
+            contactnumber: customer.contactnumber,
+            password: password,
+          });
+        }
+      } else {
         this.setState({
-          fullname: customer.name,
-          isUpdate: true,
+          fullname: fullname,
+          password: password,
+          contactnumber: contactnumber,
         });
       }
     }
   }
-  forced_reload() {
-    setTimeout(() => {
-      if (window.localStorage) {
-        if (!localStorage.getItem("firstLoad")) {
-          localStorage["firstLoad"] = true;
-          window.location.reload();
-        } else localStorage.removeItem("firstLoad");
-      }
-    }, 50);
-  }
-
   handleChange = (e) => {
     e.preventDefault();
     this.setState({
       [e.target.name]: e.target.value,
     });
   };
-  showError = (e) =>{
+  showError = (e) => {
     e.preventDefault();
     OCAlert.alertError("Please Enter your Full Name.", {
       timeOut: 3000,
     });
-
-  }
+  };
 
   render() {
     const { fullname } = this.state;
+    const { isCodeVerified } = this.props;
+    if(this.props.isCodeVerified == false){
+    return <Redirect to={"/register"} />
+    }
     return (
       <div>
         <Helmet>
@@ -87,13 +108,13 @@ class Personal_Name extends React.Component {
         {/*<!-- BEGIN OF page main content -->*/}
         <main className="page-main page-fullpage main-anim" id="mainpage">
           <div
-            className="section section-register fp-auto-height-responsive "
+            className="section-register section-register_custom fp-auto-height-responsive custom_register"
             data-section="register"
           >
             {/*<!-- Begin of section wrapper -->*/}
             <div className="section-wrapper">
               {/*<!-- title -->*/}
-              <div className="section-title text-center">
+              <div className="section-title section-title_custom text-center">
                 <h5 className="title-bg">Personal</h5>
               </div>
 
@@ -147,7 +168,7 @@ class Personal_Name extends React.Component {
                               pathname: `/personaldob`,
                               state: {
                                 fullname: this.state.fullname,
-                                contact: this.state.contact,
+                                contactnumber: this.state.contactnumber,
                                 password: this.state.password,
                               },
                             }}
@@ -158,7 +179,7 @@ class Personal_Name extends React.Component {
                         ) : (
                           <button
                             type="button"
-                            onClick={(e) =>this.showError(e)}
+                            onClick={(e) => this.showError(e)}
                             className="btn btn-white btn-round btn-full form-success-gone text-center px-1 disabled"
                           >
                             Next

@@ -1,5 +1,5 @@
 import React from "react";
-import {getCustomer } from "../../actions/customer";
+import { getCustomer } from "../../actions/customer";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 import HeaderComponentLogin from "../header/HeaderComponentLogin";
@@ -9,7 +9,7 @@ import $ from "jquery";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import * as moment from "moment";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { OCAlert } from "@opuscapita/react-alerts";
 
 class Personal_Dob extends React.Component {
@@ -17,52 +17,71 @@ class Personal_Dob extends React.Component {
     birthday: "",
   };
 
- async componentDidMount() {
-    this.forced_reload();
+  async componentDidMount() {
     setTimeout(function () {
       $("#page-loader").addClass("p-hidden");
-    }, 100);
+      var list = $(".bg-img");
+      for (var i = 0; i < $(".bg-img").length; i++) {
+        var src = $(".bg-img")[i].getAttribute("data-image-src");
+        $(".bg-img")[i].style.backgroundImage = "url('" + src + "')";
+        $(".bg-img")[i].style.backgroundRepeat = "no-repeat";
+        $(".bg-img")[i].style.backgroundPosition = "center";
+        $(".bg-img")[i].style.backgroundSize = "cover";
+      }
+      var list = $(".bg-color");
+      for (var i = 0; i < $(".bg-color").length; i++) {
+        var src = $(".bg-color")[i].getAttribute("data-bgcolor");
+        $(".bg-color")[i].style.backgroundColor = src;
+      }
+      $(".section .content .anim.anim-wrapped").wrap(
+        "<span class='anim-wrapper'></span>"
+      );
+    }, 800);
 
-    if (this.props.location.state) {
-      const { state } = this.props.location;
-      this.setState({ fullname: state.fullname,contact: state.contact,password: state.password});
-      await this.props.getCustomer(state.contact);
+    const { isCustomerExist } = this.props;
+    if (isCustomerExist) {
       const { customer } = this.props;
 
       if (customer) {
         this.setState({
-          birthday: customer.birthday && moment(customer.birthday).format("DD/MM/YYYY"),
-          isUpdate:true,
+          birthday:
+            customer.birthday && moment(customer.birthday).format("DD/MM/YYYY"),
+          isUpdate: true,
+          fullname: customer.fullname,
+          contactnumber: customer.contactnumber,
+          password: customer.password,
+        });
+      }
+    } else {
+      const { state } = this.props.location;
+      if (state) {
+        const { fullname, contactnumber, password } = state;
+        this.setState({
+          fullname: fullname,
+          contactnumber: contactnumber,
+          password: password,
         });
       }
     }
   }
-  forced_reload() {
-    setTimeout(() => {
-      if (window.localStorage) {
-        if (!localStorage.getItem("firstLoad")) {
-          localStorage["firstLoad"] = true;
-          window.location.reload();
-        } else localStorage.removeItem("firstLoad");
-      }
-    }, 50);
-  }
+
   //handle change for datepicker's event
   handleChangeForDate = (date) => {
     this.setState({
       birthday: date,
     });
   };
-  showError = (e) =>{
+  showError = (e) => {
     e.preventDefault();
     OCAlert.alertError("Please Enter your Date of birth.", {
       timeOut: 3000,
     });
-
-  }
+  };
   render() {
     const { fullname, birthday } = this.state;
-
+    if(this.props.isCodeVerified == false){
+      return <Redirect to={"/register"} />
+      }
     return (
       <div>
         <Helmet>
@@ -90,13 +109,13 @@ class Personal_Dob extends React.Component {
         {/*<!-- BEGIN OF page main content -->*/}
         <main className="page-main page-fullpage main-anim" id="mainpage">
           <div
-            className="section section-register fp-auto-height-responsive "
+            className="section-register section-register_custom fp-auto-height-responsive custom_register"
             data-section="register"
           >
             {/*<!-- Begin of section wrapper -->*/}
             <div className="section-wrapper">
               {/*<!-- title -->*/}
-              <div className="section-title text-center">
+              <div className="section-title section-title_custom text-center">
                 <h5 className="title-bg">Personal</h5>
               </div>
 
@@ -123,6 +142,7 @@ class Personal_Dob extends React.Component {
                               {fullname ? fullname : ""} ? Beautiful name! <b />
                               What is your Date of Birth?
                             </label>
+                            <br />
                             {this.state.isUpdate ? (
                               <input
                                 value={birthday}
@@ -134,7 +154,7 @@ class Personal_Dob extends React.Component {
                                 dateFormat="dd/MM/yyyy"
                                 locale="vi"
                                 selected={birthday}
-                                className="form-control"
+                                className="form-control custom_datepicker"
                                 onChange={(e) =>
                                   this.handleChangeForDate(e, "birthday")
                                 }
@@ -143,7 +163,6 @@ class Personal_Dob extends React.Component {
                                 showYearDropdown
                                 dropdownMode="select"
                                 required
-
                               />
                             )}
                           </div>
@@ -153,7 +172,7 @@ class Personal_Dob extends React.Component {
                             to={{
                               pathname: `/personaladdress`,
                               state: this.state,
-                              }}
+                            }}
                             className="btn btn-white btn-round btn-full form-success-gone text-center px-1"
                           >
                             Next
@@ -161,10 +180,10 @@ class Personal_Dob extends React.Component {
                         ) : (
                           <button
                             type="button"
-                            onClick={(e) =>this.showError(e)}
-                            className="btn btn-white btn-round btn-full form-success-gone text-center px-1 disabled"
+                            onClick={(e) => this.showError(e)}
+                            className="btn btn-white btn-round btn-full form-success-gone text-center px-1 disabled cutm_btn"
                           >
-                            Next
+                            Next..
                           </button>
                         )}
                       </div>
@@ -193,5 +212,5 @@ const mapStateToProps = (state) => ({
   customer_number: state.customer.customer_number,
 });
 export default connect(mapStateToProps, {
-  getCustomer
+  getCustomer,
 })(Personal_Dob);

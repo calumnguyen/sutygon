@@ -12,7 +12,7 @@ import {
 } from "../../actions/customer";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {  Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { OCAlert } from "@opuscapita/react-alerts";
 import { OCAlertsProvider } from "@opuscapita/react-alerts";
 import ReactFlagsSelect from "react-flags-select";
@@ -73,33 +73,58 @@ class Register extends React.Component {
   //send verification code to given phone number
   sendCodeRequest = async (e, number) => {
     e.preventDefault();
+    const { contact, password, phonenumber } = this.state;
+
     this.setState({ sendingCode: true });
-    const phonenumber = number;
-    //if phonenumber is empty, show error
-    if (phonenumber == "") {
-      OCAlert.alertError("Please enter phone number", { timeOut: 3000 });
-      return;
-    }
-    //api request for sending code
-    await this.props.sendCodeRequest(phonenumber);
-
-    const { isReqSent } = this.props;
-    console.log(isReqSent);
-    if (isReqSent == false) {
-      OCAlert.alertError("Phone Number is invalid, Try again", {
-        timeOut: 3000,
-      });
-    } else if (isReqSent == "pending") {
-      OCAlert.alertSuccess("Code sent to given phone number", {
-        timeOut: 3000,
-      });
-      return <Redirect exact to={"/VerifyCode"} />;
-    }
-
+    const _phonenumber = number;
     const phone = this.state.phonenumber;
     await this.props.getCustomer(phone);
-    const { isCustomerExist } = this.props;
-    this.setState({ sendingCode: false, isCustomerExist: isCustomerExist });
+    const { isReqSent } = this.props;
+    this.setState({ isReqSent: isReqSent });
+    const { isCustomerExist, customer } = this.props;
+    if (isCustomerExist == true) {
+      const { online_account } = customer && customer;
+      if (online_account && online_account.exist == "yes") {
+        OCAlert.alertError("Customer already registered", {
+          timeOut: 3000,
+        });
+        this.setState({ sendingCode: false });
+        return;
+      } else if (online_account && online_account.exist == "no") {
+        //api request for sending code
+        await this.props.sendCodeRequest(_phonenumber);
+        if (isReqSent == "pending") {
+          OCAlert.alertSuccess("Code sent to given phone number", {
+            timeOut: 3000,
+          });
+        }
+      }
+    } else if (isCustomerExist == false) {
+      //api request for sending code
+      await this.props.sendCodeRequest(_phonenumber);
+      
+      if (this.props.isReqSent == "pending") {
+        OCAlert.alertSuccess("Code sent to given phone number", {
+          timeOut: 3000,
+        });
+        this.setState({ sendingCode: false });
+      } else if (this.props.error && this.props.error != {} && this.props.error.status == 500 ) {
+        if(this.props.error && this.props.error.data  && this.props.error.data.errors && this.props.error.data.errors.code == 60200)
+        {
+          OCAlert.alertError("Invalid Number. Try again!!",{
+            timeOut: 3000,
+          });
+        }
+        else if(this.props.error && this.props.error.data  && this.props.error.data.errors && this.props.error.data.errors.code == 60200)
+        {
+          OCAlert.alertError("Max send attempts reached.",{
+            timeOut: 3000,
+          });
+        }
+        
+        this.setState({ sendingCode: false });
+      }
+    }
   };
 
   handleChange = (e) => {
@@ -108,36 +133,27 @@ class Register extends React.Component {
       [e.target.name]: e.target.value,
     });
   };
-  showError = (e) =>{
-    e.preventDefault();
-    OCAlert.alertError("Please Enter Phone Number and Password.", {
-      timeOut: 3000,
-    });
 
-  }
   render() {
     const { contact, password, phonenumber } = this.state;
-    const { isCustomerExist, isReqSent } = this.props;
-
+    const { isCustomerExist, isReqSent, customer } = this.props;
     if (isReqSent == "pending") {
-      OCAlert.alertSuccess("Code sent to given phone number", {
-        timeOut: 3000,
-      });
       return (
         <Redirect
           exact
           to={{
             pathname: `/VerifyCode`,
             state: {
-              contact: contact,
-              phonenumber: phonenumber,
               isCustomerExist: isCustomerExist,
               password: password,
+              contactnumber:phonenumber,
+              customer: customer,
             },
           }}
         />
       );
     }
+
     return (
       <div>
         <Helmet>
@@ -243,41 +259,57 @@ class Register extends React.Component {
                             Enter a Secured Password
                           </label>
                           <PasswordField
-                            hintText="At least 8 characters"
-                            floatingLabelText="Enter your password"
-                            errorText="Your password is too short"
                             onChange={(e) => this.handleChange(e)}
                             name="password"
                             className="form-control-line form-control-white text-white"
-
                           />
-                         
                         </div>
-                        {(this.state.password && this.state.phonenumber) != "" ?
-                        <>
-                        {this.state.sendingCode ? (
-                          <button
-                            className="btn btn-white btn-round btn-full form-success-gone"
-                            type="submit"
-                          >
-                            Sending...
-                          </button>
+
+                        {(this.state.password && this.state.phonenumber) !=
+                        "" ? (
+                          <>
+                            {this.state.sendingCode ? (
+                              <button
+                                className="btn btn-white btn-round btn-full form-success-gone"
+                                type="submit"
+                              >
+                                Sending...
+                              </button>
+                            ) : (
+                              <button
+                                className="btn btn-white btn-round btn-full form-success-gone"
+                                type="submit"
+                              >
+                                Send Verification Code
+                              </button>
+                            )}
+                          </>
                         ) : (
                           <button
                             className="btn btn-white btn-round btn-full form-success-gone"
-                            type="submit"
+                            type="button"
+                            // onClick={(e) => this.sendCodeRequest(e, contact)}
+                            // to={{
+                            //   pathname: `/VerifyCode`,
+                            //   state: {
+                            //     contact: contact,
+                            //     phonenumber: phonenumber,
+                            //     isCustomerExist: isCustomerExist,
+                            //     password: password,
+                            //   },
+                            // }}
                           >
                             Send Verification Code
                           </button>
-                        )}</> :
-                        <button
-                        className="btn btn-white btn-round btn-full form-success-gone disabled"
-                        type="button"
-                        onClick={(e) =>this.showError(e)}
-
-                      >
-                            Send Verification Code
-                      </button>}
+                        )}
+                        <div className="form-group form-success-gone">
+                          <label>
+                            Already had account? Sign In{" "}
+                            <Link to={"/login"}>
+                              <u> Đăng ký nhanh.</u>
+                            </Link>
+                          </label>
+                        </div>
                       </div>
                     </form>
                   </div>
@@ -306,6 +338,7 @@ const mapStateToProps = (state) => ({
   customers: state.customer.customers,
   customer: state.customer.customer,
   isReqSent: state.customer.isReqSent,
+  error:state.customer.error,
   isCodeVerified: state.customer.isCodeVerified,
   isCustomerExist: state.customer.isCustomerExist,
   customer_number: state.customer.customer_number,

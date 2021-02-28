@@ -103,11 +103,14 @@ export const sendCodeRequest = (phonenumber) => async (dispatch) => {
       `${BASE_URL}/api/verify/getcode?phonenumber=${phonenumber}`,
       config
     );
+
     dispatch({
       type: CODE_REQUEST_SENT,
       payload: res.data,
     });
+
   } catch (err) {
+
     dispatch({
       type: CODE_ERROR,
       payload: err.response,
@@ -146,11 +149,13 @@ export const verifyCode = (code, phonenumber) => async (dispatch) => {
       `${BASE_URL}/api/verify/verifycode?phonenumber=${phonenumber}&code=${code}`,
       config
     );
+
     dispatch({
       type: CODE_VERIFIED,
       payload: res.data,
     });
   } catch (err) {
+
     dispatch({
       type: CODE_VERIFIED,
       payload: err.response,

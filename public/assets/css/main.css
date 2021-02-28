@@ -2958,11 +2958,13 @@ textarea {
 
 @media (min-width: 768px) {
   .page-main .section {
-    transition: 0.6s; }
+    /* transition: 0.6s; */
+   }
   .page-main.menu-visible .section {
-    opacity: 0.1;
+    opacity: 1;
     -webkit-filter: blur(5px);
-            filter: blur(5px); }
+            filter: blur(5px);
+           }
   .navbar-sidebar {
     transition: 0.6s; }
     .navbar-sidebar.menu-visible {
@@ -3566,7 +3568,8 @@ textarea {
       display: block; } }
   @media (max-width: 768px) {
     .section {
-      overflow: hidden; } }
+      overflow: hidden;
+     } }
   @media (min-width: 768px) {
     .section {
       padding: 16px 2rem; } }
@@ -3681,7 +3684,7 @@ textarea {
     max-width: 720px; }
   .section-title .title-bg {
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     left: 50vw;
     line-height: 12rem;
@@ -3689,12 +3692,28 @@ textarea {
     -webkit-transform: translateX(-50%) translateY(-50%) scale(1.2);
             transform: translateX(-50%) translateY(-50%) scale(1.2);
     text-transform: uppercase;
-    opacity: 0;
+    opacity: .1;
     font-weight: bold;
     transition: 0.3s ease-in-out;
     font-size: 4rem;
     letter-spacing: -0.075em;
     z-index: -1; }
+    .section-title_custom .title-bg {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      left: 50vw;
+      line-height: 12rem;
+      margin-bottom: 0;
+      -webkit-transform: translateX(-50%) translateY(-50%) scale(1.2);
+              transform: translateX(-50%) translateY(-50%) scale(1.2);
+      text-transform: uppercase;
+      opacity: .1;
+      font-weight: bold;
+      transition: 0.3s ease-in-out;
+      font-size: 4rem;
+      letter-spacing: -0.075em;
+      z-index: -1; }
     .section-title .title-bg.no-anim {
       opacity: 0.1;
       -webkit-transform: translateX(-50%) translateY(-50%);
@@ -3978,7 +3997,7 @@ textarea {
 
 @media (min-width: 601px) {
   .section .anim .anim-wrapper {
-    overflow: hidden;
+    /* overflow: hidden; */
     display: block; }
   .section .anim .anim-1,
   .section .anim .anim-2,
@@ -5014,4 +5033,7 @@ h1, h2, h3, h4 {
 
 .PasswordField-icon-4{
   color:white
+}
+.bg-img{
+  background-image: url(../img/bg-default1.jpg);
 }

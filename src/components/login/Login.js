@@ -5,6 +5,22 @@ import HeaderComponentLogin from "../header/HeaderComponentLogin";
 import PageLoader from "../miscellaneous/PageLoader";
 import {Link} from 'react-router-dom'
 
+
+
+
+function forced_reload(){
+  setTimeout(() => {
+    <script type={"text/javascript"}>
+    function func_reload(){
+      window.location.reload(true)
+    }
+  
+      window.func_reload()
+    </script>
+  
+  },500)
+  
+}
 function Login() {
 
   return (
@@ -77,7 +93,7 @@ function Login() {
 
                         </label>
 
-                        <label>Chưa có tài khoản?<Link to={"register"}><u>Đăng ký nhanh.</u></Link>
+                        <label>Chưa có tài khoản?<Link  onClick={forced_reload} to={"register"}><u>Đăng ký nhanh.</u></Link>
                         </label>
                       </div>
 

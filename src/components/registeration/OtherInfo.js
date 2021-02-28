@@ -25,34 +25,62 @@ class OtherInfo extends React.Component {
     isUpdate: false,
   };
   async componentDidMount() {
-    await this.props.getAllCustomers();
-    this.forced_reload();
     setTimeout(function () {
       $("#page-loader").addClass("p-hidden");
-    }, 100);
-    if (this.props.location.state) {
-      const { state } = this.props.location;
-      this.setState({
-        fullname: state.fullname,
-        birthday: state.birthday,
-        address: state.address,
-        password: state.password,
-        contact: state.contact,
-      });
-      await this.props.getCustomer(state.contact);
+      var list = $(".bg-img");
+      for (var i = 0; i < $(".bg-img").length; i++) {
+        var src = $(".bg-img")[i].getAttribute("data-image-src");
+        $(".bg-img")[i].style.backgroundImage = "url('" + src + "')";
+        $(".bg-img")[i].style.backgroundRepeat = "no-repeat";
+        $(".bg-img")[i].style.backgroundPosition = "center";
+        $(".bg-img")[i].style.backgroundSize = "cover";
+      }
+      var list = $(".bg-color");
+      for (var i = 0; i < $(".bg-color").length; i++) {
+        var src = $(".bg-color")[i].getAttribute("data-bgcolor");
+        $(".bg-color")[i].style.backgroundColor = src;
+      }
+      $(".section .content .anim.anim-wrapped").wrap(
+        "<span class='anim-wrapper'></span>"
+      );
+    }, 800);
+    const { isCustomerExist } = this.props;
+    const { state } = this.props.location;
+
+    if (isCustomerExist) {
       const { customer } = this.props;
 
       if (customer) {
         this.setState({
           id: customer._id,
-          email: customer.email,
-          company_name: customer.company,
-          company_address: customer.company_address,
+          
+          birthday:
+            customer.birthday && moment(customer.birthday).format("DD/MM/YYYY"),
           isUpdate: true,
+          password: state.password,
+          fullname: customer.fullname,
+          contactnumber: customer.contactnumber,
+          address:customer.address,
+          email: customer.email,
+          company: customer.company_name,
+          company_address: customer.company_address,
+        });
+      }
+    } else {
+      if (state) {
+        const { fullname, contactnumber, password ,birthday,address} = state;
+        this.setState({
+          fullname: fullname,
+          contactnumber: contactnumber,
+          password: password,
+          birthday: birthday,
+          address: address,
         });
       }
     }
     //get all customers email array.
+    await this.props.getAllCustomers();
+
     this.getEmailArray();
   }
   getEmailArray() {
@@ -68,17 +96,6 @@ class OtherInfo extends React.Component {
     this.setState({
       customerEmailArray: emails,
     });
-  }
-
-  forced_reload() {
-    setTimeout(() => {
-      if (window.localStorage) {
-        if (!localStorage.getItem("firstLoad")) {
-          localStorage["firstLoad"] = true;
-          window.location.reload();
-        } else localStorage.removeItem("firstLoad");
-      }
-    }, 50);
   }
 
   handleChange = (e) => {
@@ -125,7 +142,7 @@ class OtherInfo extends React.Component {
     var customerData = {
       name: state.fullname,
       email: state.email,
-      contactnumber: state.contact,
+      contactnumber: state.contactnumber,
       address: state.address,
       birthday: state.birthday,
       company: state.company_name,
@@ -211,8 +228,11 @@ class OtherInfo extends React.Component {
   render() {
     const { email, company_name, company_address } = this.state;
     if (this.props.saved == true) {
-       setTimeout(function(){return <Redirect exact to={"/login"} />; }, 3000);
+      return <Redirect to={"/register"} />;
     }
+    if(this.props.isCodeVerified == false){
+      return <Redirect to={"/register"} />
+      }
     return (
       <div>
         <Helmet>
@@ -240,18 +260,18 @@ class OtherInfo extends React.Component {
         {/*<!-- BEGIN OF page main content -->*/}
         <main className="page-main page-fullpage main-anim" id="mainpage">
           <div
-            className="section section-register fp-auto-height-responsive "
+            className="section-register section-register_custom fp-auto-height-responsive custom_register"
             data-section="register"
           >
             <div className="section-wrapper">
               {/*<!-- title -->*/}
-              <div className="section-title text-center">
+              <div className="section-title section-title_custom text-center">
                 <h5 className="title-bg">Other</h5>
               </div>
 
               {/*<!-- content -->*/}
 
-              <div className="section-content anim text-center">
+              <div className="section-content anim text-center custom_otherinfo">
                 <div className="row align-items-center justify-content-center">
                   <div className="col-12 col-md-8 col-lg-6">
                     {/*<!-- Registration form container-->*/}
@@ -260,7 +280,7 @@ class OtherInfo extends React.Component {
                       method="get"
                     >
                       <div className="form-desc">
-                        <h2 className="display-6 display-title anim-2 text-white">
+                        <h2 className="display-6 display-title anim-2 text-white custom_h1">
                           Other Information
                         </h2>
                         <p className="invite text-center anim-3 text-white">
@@ -308,10 +328,6 @@ class OtherInfo extends React.Component {
                             value={company_address}
                           />
                         </div>
-                        <div className="form-group form-success-gone">
-                        <label>Signed In?<Link to={"/login"} onClick={(e)=>this.forced_reload(e)}><u>Đăng ký nhanh.</u></Link>
-                        </label>
-                      </div>
                         {/*checks if phone number is verified */}
                         <>
                           {/* checks if customer exists then the button will update the customer */}
@@ -361,6 +377,7 @@ const mapStateToProps = (state) => ({
   customer_number: state.customer.customer_number,
   customers: state.customer.customers,
   customer: state.customer.customer,
+  isCustomerExist: state.customer.isCustomerExist,
 });
 export default connect(mapStateToProps, {
   getAllCustomers,
