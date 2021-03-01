@@ -47,6 +47,20 @@ class Register extends React.Component {
     await new Promise((resolve) => setTimeout(resolve, 3000)); // 3 sec
   }
 
+  forced_reload = () =>{
+    console.log("wdas")
+    setTimeout(() => {
+      <script type={"text/javascript"}>
+      function func_reload(){
+        window.location.reload(true)
+      }
+    
+        window.func_reload()
+      </script>
+    
+    },500)
+    
+  }
   toNumber = (e) => {
     const { code, phonenumber } = this.state;
     var num = phonenumber.slice(1);
@@ -301,7 +315,7 @@ class Register extends React.Component {
                         <div className="form-group form-success-gone">
                           <label>
                             Already had account? Sign In{" "}
-                            <Link to={"/login"}>
+                            <Link to={"/login"} onClick={(e) =>this.forced_reload()}>
                               <u> Đăng ký nhanh.</u>
                             </Link>
                           </label>

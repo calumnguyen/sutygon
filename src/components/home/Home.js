@@ -22,6 +22,7 @@ function forced_reload(){
   
 }
 function Home() {
+ 
   return (
 
     <div id={'new'}>
@@ -316,7 +317,7 @@ function Home() {
                                  type="number" min="0"
                           />
                         </div> */}
-                        <Link to="/register" id="submit-num"
+                        <Link to="/register" id="submit-num"  onClick={forced_reload} 
                                 className="btn btn-white btn-round btn-full form-success-gone text-center px-1"
                                 name="submit_num">Click here to get yourself registered
                         </Link>
