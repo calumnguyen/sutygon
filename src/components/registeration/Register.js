@@ -48,7 +48,6 @@ class Register extends React.Component {
   }
 
   forced_reload = () =>{
-    console.log("wdas")
     setTimeout(() => {
       <script type={"text/javascript"}>
       function func_reload(){
@@ -68,13 +67,15 @@ class Register extends React.Component {
     if (phonenumber) {
       if (code === "VN" && res == "0") {
         this.setState({ phonenumber: "0" + num, contact: "+84" + num });
-      } else if (code === "VN" && res != "0") {
-        this.setState({ phonenumber: "", contact: "" });
-        OCAlert.alertError("Phone number must start from 0", { timeOut: 3000 });
-      } else if (code === "US") {
+      } 
+      else if (code === "VN" && res != "0") {
+        this.setState({ phonenumber: "0" + num, contact: "+84" + num });
+        // OCAlert.alertError("Phone number must start from 0", { timeOut: 3000 });
+      } 
+      else if (code === "US") {
         this.setState({
           phonenumber: phonenumber,
-          contact: "+1" + phonenumber,
+          contact: "+92" + phonenumber,
         });
       }
     }
@@ -107,10 +108,26 @@ class Register extends React.Component {
       } else if (online_account && online_account.exist == "no") {
         //api request for sending code
         await this.props.sendCodeRequest(_phonenumber);
-        if (isReqSent == "pending") {
+        if (this.props.isReqSent == "pending") {
           OCAlert.alertSuccess("Code sent to given phone number", {
             timeOut: 3000,
           });
+          this.setState({ sendingCode: false });
+        } else if (this.props.error && this.props.error != {} && this.props.error.status == 500 ) {
+          if(this.props.error && this.props.error.data  && this.props.error.data.errors && this.props.error.data.errors.code == 60200)
+          {
+            OCAlert.alertError("Invalid Number. Try again!!",{
+              timeOut: 3000,
+            });
+          }
+          else if(this.props.error && this.props.error.data  && this.props.error.data.errors && this.props.error.data.errors.code == 60200)
+          {
+            OCAlert.alertError("Max send attempts reached.",{
+              timeOut: 3000,
+            });
+          }
+          
+          this.setState({ sendingCode: false });
         }
       }
     } else if (isCustomerExist == false) {

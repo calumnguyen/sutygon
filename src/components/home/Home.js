@@ -1,12 +1,11 @@
-import React from 'react'
+import React ,{useEffect}from 'react'
 import {Helmet} from "react-helmet";
 import FooterComponent from "../footer/FooterComponent";
 import WalkthroughOverlayContainer from "../miscellaneous/WalkthroughOverlayContainer";
 import PageLoader from "../miscellaneous/PageLoader";
 import HeaderComponentHome from "../header/HeaderComponentHome";
 import {Link} from 'react-router-dom'
-
-
+import $ from "jquery";
 
 function forced_reload(){
   setTimeout(() => {
@@ -23,6 +22,28 @@ function forced_reload(){
 }
 function Home() {
  
+  useEffect(() =>{
+    
+    setTimeout(function () {
+      $("#page-loader").addClass("p-hidden");
+      var list = $(".bg-img");
+      for (var i = 0; i < $(".bg-img").length; i++) {
+        var src = $(".bg-img")[i].getAttribute("data-image-src");
+        $(".bg-img")[i].style.backgroundImage = "url('" + src + "')";
+        $(".bg-img")[i].style.backgroundRepeat = "no-repeat";
+        $(".bg-img")[i].style.backgroundPosition = "center";
+        $(".bg-img")[i].style.backgroundSize = "cover";
+      }
+      var list = $(".bg-color");
+      for (var i = 0; i < $(".bg-color").length; i++) {
+        var src = $(".bg-color")[i].getAttribute("data-bgcolor");
+        $(".bg-color")[i].style.backgroundColor = src;
+      }
+      $(".section .content .anim.anim-wrapped").wrap(
+        "<span class='anim-wrapper'></span>"
+      );
+    }, 800);
+  })
   return (
 
     <div id={'new'}>
@@ -33,11 +54,7 @@ function Home() {
         <title>Trang chủ</title>
       </Helmet>
 
-      <div>
-        <WalkthroughOverlayContainer/>
-      </div>
-
-
+      
       <div>
         <PageLoader/>
         {/*problem*/}
@@ -488,7 +505,7 @@ function Home() {
         <FooterComponent id="site-footer"/>
 
         {/*problem*/}
-        {/*<WalkthroughOverlayContainer/>*/}
+        <WalkthroughOverlayContainer/>
 
       </div>
     </div>

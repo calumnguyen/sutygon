@@ -32,7 +32,7 @@ function HeaderComponentHome() {
 
         {/*<!-- Begin of logo/brand -->*/}
         
-        <Link className={"navbar-brand"} to={"#home"}>
+        <Link className={"navbar-brand"} to={"/home"}>
           <span className="logo">
             <img className="light-logo" src="assets/img/1.png" alt="Logo"/>
           </span>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link ,Redirect} from "react-router-dom";
 import $ from "jquery";
 
 function resize() {
@@ -30,12 +30,17 @@ function WalkthroughOverlayContainer() {
   const setWalkthroughCompleted2 = (e) => {
     e.preventDefault();
     sethide(false);
+    // resize();
+  };
+  if(show == false){
+    resize();
     setTimeout(function () {
       $("#page-loader").addClass("p-hidden");
+      return <Redirect exact to={'/'} />
     }, 800);
-    resize();
-  };
+  }
   return (
+   
     <>
       {show && (
         <div className="walkthrough-overlay-container">
@@ -67,7 +72,7 @@ function WalkthroughOverlayContainer() {
             </p>
             <div className="center-vh">
               <Link
-                to={"#"}
+                to={"/"}
                 onClick={(e) => setWalkthroughCompleted2(e)}
                 className={"btn bttn-succes"}
               >
