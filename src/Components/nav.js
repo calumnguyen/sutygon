@@ -132,6 +132,20 @@ const Nav = () => {
             Contact
           </Link>
         </li>
+        <li className="link">
+          <Link
+            className="anchor"
+            activeClass="active"
+            to="test"
+            delay={100}
+            spy={true}
+            smooth={true}
+            offset={0}
+            duration={500}
+          >
+            Test
+          </Link>
+        </li>
       </ul>
     </motion.div>
   );

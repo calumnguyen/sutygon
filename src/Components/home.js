@@ -1,144 +1,66 @@
-import React, { useState, useEffect } from "react";
-import '../index.css';
-import girl from "./../images/girl.svg";
-import { motion, AnimatePresence } from "framer-motion";
-import { animateScroll as scroll } from "react-scroll";
+import React from "react";
+import { Link } from "react-router-dom";
+import HeaderComponentHome from "./header/headerhome";
 
-const contentVariants = {
-  initial: {
-    translateY: "100vh",
-    opacity: 0,
-  },
-
-  animate: {
-    translateY: "0vh",
-    opacity: 1,
-    transition: {
-      duration: 2,
-      when: "beforeChildren",
-    },
-  },
-};
-
-const childrenVariants = {
-  initial: {
-    opacity: 0,
-    y: 100,
-  },
-
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      type: "spring",
-      delay: 0.5,
-    },
-  },
-
-  exit: {
-    opacity: 0,
-    y: -200,
-    transition: { duration: 0.2 },
-  },
-};
+import "../index.css";
+import "../main.css";
 
 const Home = () => {
-  // State
-  const [showHeadingOne, setShowHeadingOne] = useState(true);
-  const [showHeadingTwo, setShowHeadingTwo] = useState(false);
-
-  // Timeout
-  useEffect(() => {
-    setTimeout(() => {
-      if (showHeadingOne) {
-        setShowHeadingOne(false);
-        setShowHeadingTwo(true);
-      } else {
-        setShowHeadingOne(true);
-        setShowHeadingTwo(false);
-      }
-    }, 3000);
-  }, [showHeadingOne, showHeadingTwo]);
-
+ 
   return (
-    <section className="home-container" id="home" name="home">
-      <motion.div
-        className="content-container"
-        variants={contentVariants}
-        initial="initial"
-        animate="animate"
+
+    <section className="home-container"  data-aos="fade-up"
+    id="home" name="home">
+
+      <div
+        className="section section-home fullscreen-md fp-auto-height-responsive main-home "
+        data-section="home"
       >
-        <h4 className="welcome-content">WELCOME TO MY WORLD</h4>
-        <br />
-        <h1 className="main-content">
-          Hi, I’m Rameeza
-          <motion.span
-            drag={true}
-            dragConstraints={{ left: 0, top: 0, bottom: 0, right: 0 }}
-            className="hand"
-            animate={{ rotate: [0, 20, 0, 20, 0, 0, 0, 0, 0, 0] }}
-            transition={{ yoyo: Infinity, duration: 1.7 }}
-          >
-            <span role="img" aria-label="Hand waving">
-              👋
-            </span>
-          </motion.span>{" "}
-        </h1>
-        {/* Animate Skill Content */}
+        <div className="section-wrapper">
+          <div className="section-content anim">
+            <div className="row">
+              <div className="col-12 col-md-6 text-left" id="leftContent">
+                <div className="title-desc">
+                  <h2 className="display-4 display-title home-title anim-1">
+                    SUTYGON
+                  </h2>
+                  <h4 className="anim-2">
+                    Chào mừng bạn đã đến với Sutygon – dẫn <br /> đầu về tổ chức
+                    sự kiện và cho thuê áo dài, trang phục biểu diễn tại Đà Nẵng
+                  </h4>
+                </div>
 
-        <div className="skill-animation">
-          <AnimatePresence>
-            {showHeadingOne && (
-              <motion.h2
-                className="skill-content"
-                variants={childrenVariants}
-                exit="exit"
-                animate="animate"
-                initial="initial"
-              >
-                Web Developer | React Developer
-              </motion.h2>
-            )}
-          </AnimatePresence>
+                <div className="btns-action anim-3">
+                  <Link
+                    to={"login"}
+                    className={"btn btn-outline-white px-4 py-2 btn-round text-white"}
+                  >
+                    Đăng nhập
+                  </Link>
+                </div>
+              </div>
 
-          <AnimatePresence>
-            {showHeadingTwo && (
-              <motion.h2
-                className="skill-content"
-                variants={childrenVariants}
-                exit="exit"
-                animate="animate"
-                initial="initial"
+              <div
+                className=" col-md-6 right-content center-vh logo-hp"
+                id="logoSizing"
               >
-Mern Stack Developer
-              </motion.h2>
-            )}
-          </AnimatePresence>
+                <div className="section-content">
+                  <div className="illustr zoomout-1">
+                    <img className="logo" src="assets/img/1.png" alt="Logo" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer className="section-footer scrolldown">
+            <Link className={"down"}>
+              <span className="icon"></span>
+              <span className="txt">Scroll Down</span>
+            </Link>
+          </footer>
         </div>
-        {/* // */}
-
-        <h1>
-          {" "}
-          from Pakistan{" "}
-          <span role="img" aria-label="Pakistan Flag">
-            🇵🇰
-          </span>
-        </h1>
-
-        <button className="button" onClick={() => scroll.scrollToBottom()}>
-          Contact Me
-        </button>
-        
-      </motion.div>
-
-      <motion.div
-        className="svg-container"
-        animate={{ translateY: [-20, 0, -20, 0] }}
-        transition={{ yoyo: Infinity, duration: 6 }}
-      >
-        <img className="svg" src={girl} alt="" />
-      </motion.div>
+      </div>
     </section>
   );
 };
