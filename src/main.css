@@ -78,7 +78,7 @@ input[type=number] {
 
   -moz-appearance: textfield;
 }
-.front .img-fluid : hover{
+.front .img-fluid:hover{
   content : url(./img/items/img-people2-square.jpg);
 }
 #headingBreak{
