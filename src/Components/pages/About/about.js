@@ -1,21 +1,26 @@
 import React from "react";
-import {Link} from 'react-router-dom'
-import "../index.css";
-import '../main.css'
+import {Link} from 'react-router-dom';
+import { Helmet } from "react-helmet";
+import "../../../index.css";
+import '../../../main.css'
 
 const Services = () => {
+
   return (
+    <div>
+      <Helmet >
+      <title>Trang chủ</title>
+      </Helmet>
     <section
       data-aos="zoom-in"
       className="services-container"
-      name="services"
-      id="services"
+      name="about"
+      id="about"
     >
      <div
             className="section section-description fp-auto-height-responsive"
-            data-section="about"
           >
-            <div className="section-wrapper center-vh dir-col anim">
+            <div className="section-wrapper center-vh dir-col anim" style={{ color: 'white'}}>
               <div className="section-title text-center">
                 <h5 className="title-bg">About</h5>
                 <h2 className="display-4 display-title anim-2">SUTYGON</h2>
@@ -54,15 +59,10 @@ const Services = () => {
                 </div>
               </div>
 
-              <footer className="section-footer scrolldown">
-                <Link className={"down"}>
-                  <span className="icon"></span>
-                  <span className="txt">Products</span>
-                </Link>
-              </footer>
             </div>
           </div>
     </section>
+    </div>
   );
 };
 

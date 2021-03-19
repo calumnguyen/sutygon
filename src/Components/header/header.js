@@ -2,9 +2,10 @@ import React from 'react'
 import NavbarTopmenu from "../navbar/NavbarTopmenu";
 import NavbarMainmenu from "../navbar/NavbarMainmenu";
 import {Link} from 'react-router-dom'
+import '../../main.css'
+import '../../index.css'
 
 function HeaderComponent() {
-
   return (
 
     <div>

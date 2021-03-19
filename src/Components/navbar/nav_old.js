@@ -1,29 +1,42 @@
-import React, { useState } from "react";
-import "../index.css";
+import React, { useState,useEffect } from "react";
 import { motion } from "framer-motion";
 import { animateScroll as scroll, Link } from "react-scroll";
+import '../../main.css'
+import '../../index.css'
 
-const Nav = () => {
+const NavRightbar = () => {
   const [navbar, setNavbar] = useState(false);
   const [navClicked, setNavClicked] = useState(false);
 
   const handleClick = () => {
     setNavClicked(!navClicked);
   };
-
+  useEffect(() => {
+    const nav_home = document.querySelector('.home_link')
+    nav_home.classList.add('active')
+  }, []);
   const changeNav = () => {
-    if (window.scrollY >= 100) {
-      setNavbar(true);
-    } else {
-      setNavbar(false);
-    }
+    scroll.scrollMore(400);
+    
+    // if (window.scrollY >= 50) {
+    //   console.log('workign')
+    //   setNavbar(true);
+    // } else {
+    //   setNavbar(false);
+    // }
   };
 
-  window.addEventListener("scroll", changeNav);
+  window.addEventListener("keydown", (event) => {
+    if (event.keyCode === 34 || event.keyCode=== 40) {
+      return changeNav;
+    }
+  });
 
   return (
     <motion.div
-      className={navbar ? "nav-container active" : "nav-container"}
+      className={"navbar-sidebar right"}
+      id="fp-nav"
+      style={{ color: "white", marginTop: "14rem" }}
       initial={{
         opacity: 0,
       }}
@@ -34,64 +47,56 @@ const Nav = () => {
         duration: 1.5,
       }}
     >
-      <span className="logo" onClick={() => scroll.scrollToTop()}>
-      &lt; Dev-Rameeza /&gt;
-      </span>
-      {/* Mobile Menu Icon */}
-      <div className="menu-icon" onClick={handleClick}>
-        <i className={navClicked ? "fas fa-times" : "fas fa-bars"}></i>
-      </div>
-      {/* // */}
-      <ul className={ navClicked ? "nav-links active" : "nav-links" }>
-        <li className="link">
+      <ul>
+        <li>
           <Link
-            className={navbar ? "anchor is-active" : "anchor"}
-            activeClass="active"
+            className={"home_link"}
+            // activeClass="active"
             to="home"
             spy={true}
             smooth={true}
             delay={100}
-            offset={0}
+            offset={-50}
             duration={500}
           >
-            Home
+            <span></span>
           </Link>
         </li>
 
-        <li className="link">
+        <li className="">
           <Link
-            className="anchor"
-            activeClass="active"
+            // className="anchor"
+            // activeClass="active"
             to="services"
             spy={true}
             smooth={true}
             delay={100}
-            offset={0}
+            offset={-50}
             duration={500}
           >
-            Services
+            <span></span>
           </Link>
         </li>
 
-        <li className="link">
+        <li className="">
           <Link
-            className="anchor"
-            activeClass="active"
+            // className="anchor"
+            // activeClass="active"
             to="skills"
             spy={true}
             smooth={true}
             delay={100}
-            offset={0}
+            offset={-50}
             duration={500}
           >
-            Skills
+            <span></span>
           </Link>
         </li>
 
         {/* <li className="link">
           <Link
             className="anchor"
-            activeClass="active"
+            // activeClass="active"
             to="portfolio"
             delay={100}
             spy={true}
@@ -103,10 +108,10 @@ const Nav = () => {
           </Link>
         </li>
 
-        <li className="link">
+        <li className=""> 
           <Link
             className="anchor"
-            activeClass="active"
+            // activeClass="active"
             to="achievements"
             delay={100}
             spy={true}
@@ -118,32 +123,32 @@ const Nav = () => {
           </Link>
         </li> */}
 
-        <li className="link">
+        <li className="">
           <Link
-            className="anchor"
-            activeClass="active"
+            // className="anchor"
+            // activeClass="active"
             to="contact"
             delay={100}
             spy={true}
             smooth={true}
-            offset={0}
+            offset={-50}
             duration={500}
           >
-            Contact
+            <span></span>
           </Link>
         </li>
-        <li className="link">
+        <li className="">
           <Link
-            className="anchor"
-            activeClass="active"
+            // className="anchor"
+            // activeClass="active"
             to="test"
             delay={100}
             spy={true}
             smooth={true}
-            offset={0}
+            offset={-50}
             duration={500}
           >
-            Test
+            <span></span>
           </Link>
         </li>
       </ul>
@@ -151,4 +156,4 @@ const Nav = () => {
   );
 };
 
-export default Nav;
+export default NavRightbar;
