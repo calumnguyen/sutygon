@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import {sectionAbout} from '../Functions/func';
 import "../../../index.css";
-import '../../../main.css'
+import "../../../main.css";
 
 const Home = () => {
+ const scrollFunc = () =>{
+  var scrollDiv = document.getElementById("about").offsetTop;
+  window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+  sectionAbout();
+}
+ 
   return (
     <div>
       <Helmet>
@@ -61,7 +68,7 @@ const Home = () => {
             </div>
 
             <footer className="section-footer scrolldown">
-              <Link className={"down"}>
+              <Link className={"down"} onClick={()=>scrollFunc()}>
                 <span className="icon"></span>
                 <span className="txt">Scroll Down</span>
               </Link>

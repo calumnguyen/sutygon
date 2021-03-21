@@ -7,7 +7,6 @@ import "../../../index.css";
 import "../../../main.css";
 
 const Login = () => {
-  const [addClass, setAddClass] = useState(false);
   useEffect(() => {
     const main = document.querySelector("#mainpage");
     const section = document.querySelector(".section-register");

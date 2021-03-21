@@ -2,18 +2,66 @@ import React, { useState } from "react";
 
 function WalkthroughOverlayContainer() {
   const [show, sethide] = useState(true);
+  const [addClass, setAddClass] = useState(false);
+  const [showNav, setNav] = useState(false);
+  const [addClassWrapper, setAddClassWrapper] = useState(false);
   const setWalkthroughCompleted2 = (e) => {
     e.preventDefault();
     sethide(false);
   };
+  const test = () => {
+    setNav(!showNav);
+    if (showNav == true) {
+      const main = document.querySelector("#mainpage");
+      main.classList.add(
+        "page-main",
+        "page-fullpage",
+        "main-anim",
+        "fullpage-wrapper",
+        "menu-visible"
+      );
+      setAddClass(true);
+      setAddClassWrapper(true);
 
+      const span = document.querySelector(".menu-icon");
+      span.classList.add("menu-visible");
+    } else if (showNav == false) {
+      const span = document.querySelector(".menu-icon");
+      span.classList.remove("menu-visible");
+      const main = document.querySelector("#mainpage");
+      setAddClass(false);
+      setAddClassWrapper(false);
+
+      main.classList.remove(
+        "page-main",
+        "page-fullpage",
+        "main-anim",
+        "fullpage-wrapper",
+        "menu-visible"
+      );
+    }
+  };
   return (
     <>
       {show && (
         <div className="walkthrough-overlay-container">
           <div className="menu-cont">
-            <button className="navbar-toggler site-menu-icon" id="navMenuIcon">
-              <span className="menu-icon menu-icon-random">
+          <button
+            className={
+              addClass == true
+                ? "navbar-toggler site-menu-icon menu-visible"
+                : "navbar-toggler site-menu-icon"
+            }
+            id="navMenuIcon"
+            onClick={test}
+          >           
+             <span
+              className={
+                addClass == true
+                  ? "menu-icon menu-icon-random menu-visible"
+                  : "menu-icon menu-icon-random"
+              }
+            >
                 <span className="bars">
                   <span className="bar1"></span>
                   <span className="bar2"></span>

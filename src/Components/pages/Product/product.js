@@ -1,10 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import {sectionContact} from '../Functions/func';
 import "../../../index.css";
 import "../../../main.css";
 
 const Product = () => {
+  
+  const scrollFunc = () =>{
+    var scrollDiv = document.getElementById("contact").offsetTop;
+    window.scrollTo({ top: scrollDiv, behavior: 'smooth'});
+    sectionContact()
+  }
   return (
     <div>
       <Helmet>
@@ -225,6 +232,12 @@ const Product = () => {
             </div>
           </div>
         </div>
+        <footer className="section-footer scrolldown">
+              <Link className={"down"} onClick={()=>scrollFunc()}>
+                <span className="icon"></span>
+                <span className="txt">Scroll Down</span>
+              </Link>
+            </footer>
       </section>
     </div>
   );

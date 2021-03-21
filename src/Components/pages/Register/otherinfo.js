@@ -27,8 +27,8 @@ class OtherInfo extends React.Component {
 
   async componentDidMount() {
     const register = document.querySelector(".nav-register");
-    const navRightbar = document.querySelector(".navbar-rightbar");
-    navRightbar && navRightbar.classList.add("n-hidden")
+    // const navRightbar = document.querySelector(".navbar-rightbar");
+    // navRightbar && navRightbar.classList.add("n-hidden")
     register && register.classList.add("active");
     const main = document.querySelector("#mainpage");
     const section = document.querySelector(".section-register");

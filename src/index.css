@@ -79,9 +79,9 @@ body {
 /* Home*/
 .home-container {
 color: white;
- height: 70%;
+ height: 100%;
  margin-top:0%;
- max-height: 70vh;
+ max-height: 100vh;
 } 
 .content-container {
   width: 50vw;
@@ -158,6 +158,8 @@ color: white;
   justify-content: center;
   display: flex;
   width: 100%;
+  /* overflow-x: hidden; */
+
   height: 100vh;
   flex-direction: column;
   font-family: "Exo 2", sans-serif;
@@ -171,6 +173,7 @@ color: white;
   justify-content: center;
   display: flex;
   width: 100%;
+  
   margin-top: 4rem;
   height: 30vh;
   flex-wrap: wrap;
@@ -181,7 +184,7 @@ color: white;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  width: 400px;
+  /* width: 400px; */
   text-align: center;
   /* background: #e7dddd5c; */
   margin: 1rem;
@@ -731,7 +734,7 @@ color: white;
 /* 1150 Breakpoint */
 @media screen and (max-width: 1150px) {
   .home-container {
-    /* flex-direction: column; */
+    flex-direction: column;
   }
   .content-container {
     padding-top: 5rem;

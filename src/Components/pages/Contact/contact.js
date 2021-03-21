@@ -16,7 +16,9 @@ const Contact = () => {
     setTimeout(function () {
       setLoader(false);
     }, 500);
-    const navRightbar = document.querySelector(".navbar-rightbar");
+    const register = document.querySelector(".nav-register");
+    register && register.classList.remove("active")
+      const navRightbar = document.querySelector(".navbar-rightbar");
       navRightbar && navRightbar.classList.add("n-hidden")
   
    
