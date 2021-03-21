@@ -128,7 +128,7 @@ class Register extends React.Component {
       } else if (countryCode === "US") {
         this.setState({
           phonenumber: phonenumber,
-          code_phonenumber: "+92" + phonenumber,
+          code_phonenumber: "+1" + phonenumber,
         });
       }
     }
